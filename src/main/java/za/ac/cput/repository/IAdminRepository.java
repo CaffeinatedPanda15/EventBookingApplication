@@ -1,20 +1,20 @@
 package za.ac.cput.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import za.ac.cput.domain.Admin;
+import za.ac.cput.domain.Customer;
 
-public interface IAdminRepository extends JpaRepository<Admin, String> {
-    Admin create(Admin admin);
+public interface IAdminRepository extends JpaRepository<Customer, String> {
+    Customer create(Customer admin);
 
-    Admin read(String adminId);
+    Customer read(String adminId);
 
-    Admin update(Admin admin);
+    Customer update(Customer admin);
 
     boolean delete(String adminId);
 
-    Admin getAdminByEmail(String email);
+    Customer getAdminByEmail(String email);
 
-    Admin getAdminByPhoneNumber(String phoneNumber);
+    Customer getAdminByPhoneNumber(String phoneNumber);
 
-    Admin getAdminByUsername(String username);
+    Customer getAdminByUsername(String username);
 }

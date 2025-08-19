@@ -3,8 +3,8 @@ package za.ac.cput.factory;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.domain.UserType;
 
-public class AdminFactory {
-    public static Customer createAdmin(String userName, String fullname, String emailAddress, String password, UserType userType, String address, String contactNumber) {
+public class CustomerFactory {
+    public static Customer createCustomer(String userName, String fullname, String emailAddress, String password, UserType userType, String address, String contactNumber) {
         if (userName == null || fullname == null || emailAddress == null || password == null || address == null || contactNumber == null) {
             return null;
         }
@@ -18,4 +18,4 @@ public class AdminFactory {
                 .setContactNumber(contactNumber)
                 .build();
     }
-}//end of class
+}

@@ -2,7 +2,7 @@ package za.ac.cput.domain;
 
 public enum UserType {
     ADMIN,
-    CUSTOMER;
+    CUSTOMER, userType;
 
     @Override
     public String toString() {

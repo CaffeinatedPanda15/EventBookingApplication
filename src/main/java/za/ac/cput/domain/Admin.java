@@ -83,7 +83,7 @@ public class Admin extends User {
             return new Admin(this);
         }
 
-        public Builder copy(Admin admin) {
+        public Builder copy(Customer admin) {
             this.userName = admin.getUserName();
             this.fullname = admin.getFullname();
             this.emailAddress = admin.getEmailAddress();

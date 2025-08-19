@@ -1,13 +1,13 @@
 package za.ac.cput.service;
 
-import za.ac.cput.domain.Admin;
+import za.ac.cput.domain.Customer;
 
 public interface IAdminService {
-    Admin create(Admin admin);
-    Admin read(String adminId);
-    Admin update(Admin admin);
+    Customer create(Customer admin);
+    Customer read(String adminId);
+    Customer update(Customer admin);
     boolean delete(String adminId);
-    Admin getAdminByEmail(String email);
-    Admin getAdminByPhoneNumber(String phoneNumber);
-    Admin getAdminByUsername(String username);
+    Customer getAdminByEmail(String email);
+    Customer getAdminByPhoneNumber(String phoneNumber);
+    Customer getAdminByUsername(String username);
 }
