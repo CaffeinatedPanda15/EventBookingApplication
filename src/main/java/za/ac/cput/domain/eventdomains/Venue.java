@@ -71,6 +71,8 @@ public class Venue {
         public Venue build() {
             return new Venue(this);
         }
+
+
     }
     public Venue copy(Venue venue){
         this.venueId = venue.venueId;

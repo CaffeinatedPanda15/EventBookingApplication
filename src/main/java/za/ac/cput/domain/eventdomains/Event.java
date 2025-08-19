@@ -3,14 +3,13 @@ package za.ac.cput.domain.eventdomains;
 
 
 import java.sql.Time;
-import java.util.Date;
 
 public class Event {
     private int eventId;
     private String eventName;
     private String eventDescription;
     private Venue eventLocation;
-    private Date eventDate;
+    private String eventDate;
     private Time eventTime;
     private String category;
     private EventStatus status;
@@ -45,7 +44,7 @@ public class Event {
         return eventLocation;
     }
 
-    public Date getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
 
@@ -80,7 +79,7 @@ public class Event {
         private String eventName;
         private String eventDescription;
         private Venue eventLocation;
-        private Date eventDate;
+        private String eventDate;
         private Time eventTime;
         private String category;
         private EventStatus status;
@@ -105,7 +104,7 @@ public class Event {
             return this;
         }
 
-        public Builder setEventDate(Date eventDate) {
+        public Builder setEventDate(String eventDate) {
             this.eventDate = eventDate;
             return this;
         }
@@ -140,5 +139,6 @@ public class Event {
             this.status = event.status;
             return this;
         }
+
     }//end of Builder
 }//end of class
