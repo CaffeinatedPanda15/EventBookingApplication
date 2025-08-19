@@ -3,7 +3,7 @@ package za.ac.cput.controller;
 import za.ac.cput.domain.Payment;
 import za.ac.cput.factory.PaymentFactory;
 import za.ac.cput.repository.PaymentRepository;
-import java.util.Date;
+import java.util.*;
 
 public class PaymentController {
     public static void main(String[] args) {
