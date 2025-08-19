@@ -1,8 +1,10 @@
-package za.ac.cput.domain;
+package za.ac.cput.domain.eventdomains;
+
+import za.ac.cput.domain.endusers.Customer;
 
 import java.time.LocalDateTime;
 
-public class Booking extends Customer{
+public class Booking extends Customer {
     private String bookingId;
     private int customerID;
     private int ticketID;

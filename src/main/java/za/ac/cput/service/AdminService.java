@@ -1,8 +1,8 @@
 package za.ac.cput.service;
 
 
-import za.ac.cput.domain.Customer;
-import za.ac.cput.repository.IAdminRepository;
+import za.ac.cput.domain.endusers.Admin;
+import za.ac.cput.repository.endusers.IAdminRepository;
 
 public class AdminService implements IAdminService{
 
@@ -18,17 +18,17 @@ public class AdminService implements IAdminService{
     }
 
     @Override
-    public Customer create(Customer admin) {
+    public Admin create(Admin admin) {
         return repository.create(admin);
     }
 
     @Override
-    public Customer read(String adminId) {
+    public Admin read(String adminId) {
         return repository.read(adminId);
     }
 
     @Override
-    public Customer update(Customer admin) {
+    public Admin update(Admin admin) {
         return repository.update(admin);
     }
 
@@ -38,17 +38,17 @@ public class AdminService implements IAdminService{
     }
 
     @Override
-    public Customer getAdminByEmail(String email) {
+    public Admin getAdminByEmail(String email) {
         return repository.getAdminByEmail(email);
     }
 
     @Override
-    public Customer getAdminByPhoneNumber(String phoneNumber) {
+    public Admin getAdminByPhoneNumber(String phoneNumber) {
         return repository.getAdminByPhoneNumber(phoneNumber);
     }
 
     @Override
-    public Customer getAdminByUsername(String username) {
+    public Admin getAdminByUsername(String username) {
         return repository.getAdminByUsername(username);
     }
 }

@@ -1,20 +1,20 @@
-package za.ac.cput.service;
+package za.ac.cput.repository.endusers;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import za.ac.cput.domain.endusers.Admin;
-import za.ac.cput.domain.endusers.Customer;
 
-public interface IAdminService {
-    Customer create(Customer admin);
-
+public interface IAdminRepository extends JpaRepository<Admin, String> {
     Admin create(Admin admin);
 
     Admin read(String adminId);
-    Customer update(Customer admin);
 
     Admin update(Admin admin);
 
     boolean delete(String adminId);
+
     Admin getAdminByEmail(String email);
+
     Admin getAdminByPhoneNumber(String phoneNumber);
+
     Admin getAdminByUsername(String username);
 }

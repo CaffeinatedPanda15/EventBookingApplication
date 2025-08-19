@@ -1,9 +1,9 @@
-package za.ac.cput.domain;
+package za.ac.cput.domain.endusers;
 
 public class Customer extends User {
     public static Object UserType;
-    private String address;
-    private String contactNumber;
+    private static String address;
+    private static String contactNumber;
 
     private Customer() {
 
@@ -19,11 +19,11 @@ public class Customer extends User {
         this.contactNumber = build.contactNumber;
     }
 
-    public String getAddress() {
+    public static String getAddress() {
         return address;
     }
 
-    public String getContactNumber() {
+    public static String getContactNumber() {
         return contactNumber;
     }
 
@@ -40,7 +40,7 @@ public class Customer extends User {
         private String fullname;
         private String emailAddress;
         private String password;
-        private UserType userType;
+        private za.ac.cput.domain.endusers.UserType userType;
         private String address;
         private String contactNumber;
 
@@ -84,13 +84,13 @@ public class Customer extends User {
         }
 
         public Builder copy(Customer admin) {
-            this.userName = admin.getUserName();
-            this.fullname = admin.getFullname();
-            this.emailAddress = admin.getEmailAddress();
-            this.password = admin.getPassword();
-            this.userType = admin.getUserType();
-            this.address = admin.getAddress();
-            this.contactNumber = admin.getContactNumber();
+            this.userName = Customer.getUserName();
+            this.fullname = Customer.getFullname();
+            this.emailAddress = Customer.getEmailAddress();
+            this.password = Customer.getPassword();
+            this.userType = Customer.getUserType();
+            this.address = Customer.getAddress();
+            this.contactNumber = Customer.getContactNumber();
             return this;
         }
 

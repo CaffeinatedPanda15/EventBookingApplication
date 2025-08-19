@@ -1,4 +1,4 @@
-package za.ac.cput.domain;
+package za.ac.cput.domain.endusers;
 
 public class Admin extends User {
     public static Object UserType;
@@ -40,7 +40,7 @@ public class Admin extends User {
         private String fullname;
         private String emailAddress;
         private String password;
-        private UserType userType;
+        private za.ac.cput.domain.endusers.UserType userType;
         private String address;
         private String contactNumber;
 

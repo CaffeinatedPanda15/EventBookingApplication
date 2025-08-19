@@ -1,4 +1,4 @@
-package za.ac.cput.domain;
+package za.ac.cput.domain.endusers;
 
 public abstract class User {
     private String userName;
@@ -11,23 +11,23 @@ public abstract class User {
     public User() {
     }
 
-    public String getUserName() {
+    public static String getUserName() {
         return userName;
     }
 
-    public String getFullname() {
+    public static String getFullname() {
         return fullname;
     }
 
-    public String getEmailAddress() {
+    public static String getEmailAddress() {
         return emailAddress;
     }
 
-    public String getPassword() {
+    public static String getPassword() {
         return password;
     }
 
-    public UserType getUserType() {
+    public static UserType getUserType() {
         return userType;
     }
 

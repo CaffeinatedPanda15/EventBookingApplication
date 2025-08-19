@@ -1,5 +1,5 @@
 package za.ac.cput.factory;
-import za.ac.cput.domain.Booking;
+import za.ac.cput.domain.eventdomains.Booking;
 import za.ac.cput.util.Helper;
 
 import java.time.LocalDateTime;
