@@ -1,25 +1,22 @@
-//Muhammad Siddeeq Rabin
-//STUDENT :221084096
-//Group kN13
-
 package za.ac.cput.service;
 
 import za.ac.cput.domain.Payment;
-import za.ac.cput.repository.PaymentRepository;
+import za.ac.cput.repository.IPaymentRepository;
+
 import java.util.List;
 
 public class PaymentService implements IPaymentService {
 
     private static PaymentService service = null;
-    private PaymentRepository repository = null;
+    private IPaymentRepository repository;  //interface, not concrete
 
-    private PaymentService() {
-        this.repository = PaymentRepository.getRepository();
+    private PaymentService(IPaymentRepository repository) {
+        this.repository = repository;
     }
 
-    public static PaymentService getService() {
+    public static PaymentService getService(IPaymentRepository repository) {
         if (service == null) {
-            service = new PaymentService();
+            service = new PaymentService(repository);
         }
         return service;
     }

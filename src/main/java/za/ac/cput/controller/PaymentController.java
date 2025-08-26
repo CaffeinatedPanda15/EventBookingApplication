@@ -1,57 +1,54 @@
+//Muhammad Siddeeq Rabin
+//STUDENT :221084096
+//Group kN13
+
 package za.ac.cput.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Payment;
-import za.ac.cput.factory.PaymentFactory;
-import za.ac.cput.repository.PaymentRepository;
-import java.util.*;
+import za.ac.cput.service.IPaymentService;
 
+import java.util.List;
+
+@RestController
+@RequestMapping("/payment")
 public class PaymentController {
-    public static void main(String[] args) {
-        // Get repository instance
-        PaymentRepository repository = PaymentRepository.getRepository();
 
-        // Create a payment using the factory
-        Payment payment1 = PaymentFactory.createPayment(
-                1,
-                500.00,
-                new Date(),
-                "Credit Card",
-                Payment.Status.Successful
-        );
+    private final IPaymentService service;
 
-        Payment payment2 = PaymentFactory.createPayment(
-                2,
-                300.00,
-                new Date(),
-                "Cash",
-                Payment.Status.Pending
-        );
+    @Autowired
+    public PaymentController(IPaymentService service) {
+        this.service = service;
+    }
 
-        // Save payments to repository
-        repository.create(payment1);
-        repository.create(payment2);
+    // Create a payment
+    @PostMapping("/create")
+    public Payment create(@RequestBody Payment payment) {
+        return service.create(payment);
+    }
 
-        // Display all payments
-        System.out.println("All Payments:");
-        repository.getAll().forEach(System.out::println);
+    // Read a payment by ID
+    @GetMapping("/read/{id}")
+    public Payment read(@PathVariable("id") int paymentID) {
+        return service.read(paymentID);
+    }
 
-        // Read a payment
-        System.out.println("\nReading Payment ID 1:");
-        System.out.println(repository.read(1));
+    // Update a payment
+    @PutMapping("/update")
+    public Payment update(@RequestBody Payment payment) {
+        return service.update(payment);
+    }
 
-        // Update a payment
-        Payment updatedPayment = new Payment.Builder()
-                .copy(payment2)
-                .withStatus(Payment.Status.Successful)
-                .build();
-        repository.update(updatedPayment);
-        System.out.println("\nAfter Update:");
-        repository.getAll().forEach(System.out::println);
+    // Delete a payment by ID
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@PathVariable("id") int paymentID) {
+        return service.delete(paymentID);
+    }
 
-        // Delete a payment
-        repository.delete(1);
-        System.out.println("\nAfter Deletion:");
-        repository.getAll().forEach(System.out::println);
+    // Get all payments
+    @GetMapping("/getAll")
+    public List<Payment> getAll() {
+        return service.getAll();
     }
 }
-
