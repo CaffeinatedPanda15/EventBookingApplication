@@ -2,7 +2,7 @@
 //STUDENT :221084096
 //Group kN13
 
-package za.ac.cput.factory;
+package za.ac.cput.factory.eventfactories;
 
 import za.ac.cput.domain.Payment;
 import za.ac.cput.util.Helper;

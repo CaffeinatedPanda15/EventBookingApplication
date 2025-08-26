@@ -1,4 +1,4 @@
-package za.ac.cput.factory;
+package za.ac.cput.factory.eventfactories;
 import za.ac.cput.domain.eventdomains.Booking;
 import za.ac.cput.util.Helper;
 
