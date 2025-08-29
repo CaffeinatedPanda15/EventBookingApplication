@@ -5,7 +5,7 @@ import za.ac.cput.util.Helper;
 
 import java.time.LocalDateTime;
 
-@Deprecated
+
 public class BookingFactory {
 
     public static Booking createBooking(long customerID, long ticketID, LocalDateTime bookingDate,

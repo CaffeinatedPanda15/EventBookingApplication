@@ -5,31 +5,17 @@ import za.ac.cput.domain.endusers.UserType;
 
 public class CustomerFactory {
 
-    public static Customer createCustomer(
-            String userName,
-            String fullname,
-            String emailAddress,
-            String password,
-            UserType userType,
-            String address,
-            String contactNumber
-    ) {
-        // Validate required fields
-        if (userName == null || fullname == null || emailAddress == null || password == null || address == null || contactNumber == null) {
-            return null;
-        }
-
-        // Build the Customer using the Builder
-        return (Customer) new Customer.Builder()
+    public static Customer createCustomer(String userName, String fullName, String email,
+                                          String password, UserType userType,
+                                          String address, String contactNumber) {
+        return new Customer.Builder()
                 .setUserName(userName)
-                .setFullname(fullname)
-                .setEmailAddress(emailAddress)
+                .setFullname(fullName)
+                .setEmailAddress(email)
                 .setPassword(password)
-                .setUserType(userType)  // use the method argument
+                .setUserType(userType)
                 .setAddress(address)
                 .setContactNumber(contactNumber)
                 .build();
     }
 }
-
-
