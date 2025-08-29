@@ -11,23 +11,23 @@ public abstract class User {
     public User() {
     }
 
-    public static String getUserName() {
+    public  String getUserName() {
         return userName;
     }
 
-    public static String getFullname() {
+    public  String getFullname() {
         return fullname;
     }
 
-    public static String getEmailAddress() {
+    public String getEmailAddress() {
         return emailAddress;
     }
 
-    public static String getPassword() {
+    public  String getPassword() {
         return password;
     }
 
-    public static UserType getUserType() {
+    public  UserType getUserType() {
         return userType;
     }
 

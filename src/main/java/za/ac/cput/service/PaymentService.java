@@ -8,13 +8,13 @@ import java.util.List;
 public class PaymentService implements IPaymentService {
 
     private static PaymentService service = null;
-    private IPaymentRepository repository;  //interface, not concrete
+    private static IPaymentRepository repository;  //interface, not concrete
 
     private PaymentService(IPaymentRepository repository) {
         this.repository = repository;
     }
 
-    public static PaymentService getService(IPaymentRepository repository) {
+    public static PaymentService getService() {
         if (service == null) {
             service = new PaymentService(repository);
         }

@@ -1,9 +1,13 @@
 package za.ac.cput.domain.endusers;
 
+
+import jakarta.persistence.Entity;
+
+
 public class Customer extends User {
-    public static Object UserType;
-    private static String address;
-    private static String contactNumber;
+    public Object UserType;
+    private String address;
+    private String contactNumber;
 
     private Customer() {
 
@@ -19,19 +23,24 @@ public class Customer extends User {
         this.contactNumber = build.contactNumber;
     }
 
-    public static String getAddress() {
+    public  String getAddress() {
         return address;
     }
 
-    public static String getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
     @Override
     public String toString() {
-        return "Admin{" +
-                "address='" + address + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
+        return "Customer{" +
+                "userName=" + getUserName() +
+                ", fullname=" + getFullname() +
+                ", emailAddress=" + getEmailAddress() +
+                ", password=" + getPassword() +
+                ", userType=" + getUserType() +
+                ", address=" + address +
+                ", contactNumber=" + contactNumber +
                 '}';
     }
 
@@ -83,14 +92,14 @@ public class Customer extends User {
             return new Customer(this);
         }
 
-        public Builder copy(Customer admin) {
-            this.userName = Customer.getUserName();
-            this.fullname = Customer.getFullname();
-            this.emailAddress = Customer.getEmailAddress();
-            this.password = Customer.getPassword();
-            this.userType = Customer.getUserType();
-            this.address = Customer.getAddress();
-            this.contactNumber = Customer.getContactNumber();
+        public Builder copy(Customer customer) {
+            this.userName = customer.getUserName();
+            this.fullname = customer.getFullname();
+            this.emailAddress = customer.getEmailAddress();
+            this.password = customer.getPassword();
+            this.userType = customer.getUserType();
+            this.address = customer.getAddress();
+            this.contactNumber = customer.getContactNumber();
             return this;
         }
 

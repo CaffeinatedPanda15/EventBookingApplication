@@ -1,11 +1,12 @@
 package za.ac.cput.factory.eventfactories;
 
+import za.ac.cput.domain.endusers.Customer;
 import za.ac.cput.domain.eventdomains.Event;
 
 import java.sql.Time;
 
 public class EventFactory {
-    public static Event createEvent(int eventId, String eventName, String eventDescription, String eventDate, String eventTime, int venueId, int organizerId) {
+    public static Customer createEvent(int eventId, String eventName, String eventDescription, String eventDate, String eventTime, int venueId, int organizerId) {
         if (eventName == null || eventDescription == null || eventDate == null || eventTime == null) {
             return null;
         }

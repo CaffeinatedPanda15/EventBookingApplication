@@ -4,11 +4,11 @@
 
 package za.ac.cput.services;
 
+import za.ac.cput.factory.eventfactories.PaymentFactory;
 import za.ac.cput.service.PaymentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.Payment;
-import za.ac.cput.factory.PaymentFactory;
 import java.util.Date;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;

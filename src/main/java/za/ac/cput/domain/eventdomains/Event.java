@@ -2,6 +2,8 @@ package za.ac.cput.domain.eventdomains;
 
 
 
+import za.ac.cput.domain.endusers.Customer;
+
 import java.sql.Time;
 
 public class Event {
@@ -140,5 +142,8 @@ public class Event {
             return this;
         }
 
+        public Customer.Builder setVenueId(int venueId) {
+            return null;
+        }
     }//end of Builder
 }//end of class

@@ -1,28 +1,23 @@
 package za.ac.cput.factory.eventfactories;
+
 import za.ac.cput.domain.eventdomains.Booking;
 import za.ac.cput.util.Helper;
 
 import java.time.LocalDateTime;
 
-
+@Deprecated
 public class BookingFactory {
-    public static  Booking createBooking(String bookingID,int customerID,
-                                         int ticketID, LocalDateTime bookingDate,
-                                         String status){
-        if (Helper.isNullorEmpty(bookingID) || Helper.isZeroOrNull(customerID)
-                || Helper.isZeroOrNull(ticketID) || Helper.isNullorEmpty(status))
+
+    public static Booking createBooking(long customerID, long ticketID, LocalDateTime bookingDate,
+                                        String status){
+        if (Helper.isNullorEmpty(String.valueOf(customerID))
+                || Helper.isNullorEmpty(String.valueOf(ticketID)) || Helper.isNullorEmpty(status))
 
             return null;
 
-        return new Booking.Builder().setBookingID(bookingID)
-                .setCustomerID(customerID).setTicketID(ticketID)
+        return new Booking.Builder().setCustomerID((int) customerID).setTicketID((int) ticketID)
                 .setBookingDate(bookingDate).setStatus(status).build();
 
 
     }
-
-
-
-
-
 }
