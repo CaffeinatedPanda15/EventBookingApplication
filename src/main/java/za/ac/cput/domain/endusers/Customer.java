@@ -1,19 +1,19 @@
 package za.ac.cput.domain.endusers;
 
-
 import jakarta.persistence.Entity;
 
 
+@Entity
 public class Customer extends User {
-    public Object UserType;
+
+
     private String address;
     private String contactNumber;
 
-    private Customer() {
-
+    public Customer() {
     }
 
-    public Customer(Builder build) {
+    private Customer(Builder build) {
         super.setUserName(build.userName);
         super.setFullname(build.fullname);
         super.setEmailAddress(build.emailAddress);
@@ -23,7 +23,7 @@ public class Customer extends User {
         this.contactNumber = build.contactNumber;
     }
 
-    public  String getAddress() {
+    public String getAddress() {
         return address;
     }
 
@@ -49,7 +49,7 @@ public class Customer extends User {
         private String fullname;
         private String emailAddress;
         private String password;
-        private za.ac.cput.domain.endusers.UserType userType;
+        private UserType userType;
         private String address;
         private String contactNumber;
 
@@ -102,7 +102,5 @@ public class Customer extends User {
             this.contactNumber = customer.getContactNumber();
             return this;
         }
-
-
-    }//end of builder class
-}//end of class
+    }
+}

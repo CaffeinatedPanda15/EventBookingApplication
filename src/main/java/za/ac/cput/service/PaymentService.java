@@ -1,9 +1,10 @@
 package za.ac.cput.service;
 
 import za.ac.cput.domain.Payment;
-import za.ac.cput.repository.IPaymentRepository;
+import za.ac.cput.repository.eventrepositories.IPaymentRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class PaymentService implements IPaymentService {
 
@@ -23,17 +24,17 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public Payment create(Payment payment) {
-        return repository.create(payment);
+        return repository.save(payment);
     }
 
     @Override
-    public Payment read(int paymentID) {
-        return repository.read(paymentID);
+    public Optional<Payment> read(int paymentID) {
+        return repository.findById(String.valueOf(paymentID));
     }
 
     @Override
     public Payment update(Payment payment) {
-        return repository.update(payment);
+        return repository.save(payment);
     }
 
     @Override
@@ -43,6 +44,6 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public List<Payment> getAll() {
-        return repository.getAll();
+        return repository.findAll();
     }
 }

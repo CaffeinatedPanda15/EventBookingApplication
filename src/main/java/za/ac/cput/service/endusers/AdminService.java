@@ -1,11 +1,11 @@
-package za.ac.cput.service;
+package za.ac.cput.service.endusers;
 
 
 import za.ac.cput.domain.endusers.Admin;
 import za.ac.cput.domain.endusers.Customer;
 import za.ac.cput.repository.endusers.IAdminRepository;
 
-public class AdminService implements IAdminService{
+public class AdminService implements IAdminService {
 
 
     private static AdminService service = null;

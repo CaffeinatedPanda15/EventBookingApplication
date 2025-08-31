@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.endusers;
 
 import za.ac.cput.domain.endusers.Customer;
 import java.util.List;
@@ -12,4 +12,3 @@ public interface ICustomerService {
     List<Customer> getAll();
 }
 
-//this tells us what operations the class must provide for us

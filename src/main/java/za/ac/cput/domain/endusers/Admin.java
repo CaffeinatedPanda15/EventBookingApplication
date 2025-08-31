@@ -1,15 +1,18 @@
 package za.ac.cput.domain.endusers;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Admin extends User {
     public static Object UserType;
     private String address;
     private String contactNumber;
 
-    private Admin() {
+    public Admin() {
 
     }
 
-    public Admin(Builder build) {
+    private Admin(Builder build) {
         super.setUserName(build.userName);
         super.setFullname(build.fullname);
         super.setEmailAddress(build.emailAddress);
@@ -30,6 +33,11 @@ public class Admin extends User {
     @Override
     public String toString() {
         return "Admin{" +
+                "userName=" + getUserName() +
+                ", fullname=" + getFullname() +
+                ", emailAddress=" + getEmailAddress() +
+                ", password=" + getPassword() +
+                ", userType=" + getUserType() +
                 "address='" + address + '\'' +
                 ", contactNumber='" + contactNumber + '\'' +
                 '}';

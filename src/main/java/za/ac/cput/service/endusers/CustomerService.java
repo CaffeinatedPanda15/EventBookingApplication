@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.endusers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,8 +32,12 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Customer update(Customer customer) {
-        return repository.save(customer);
+        if (repository.existsById(customer.getUserName())) {
+            return repository.save(customer);
+        }
+        return null;
     }
+
 
     @Override
     public boolean delete(String customerId) {

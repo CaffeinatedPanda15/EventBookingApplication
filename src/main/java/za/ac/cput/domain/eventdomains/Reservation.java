@@ -1,22 +1,28 @@
+
+
 package za.ac.cput.domain.eventdomains;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import za.ac.cput.domain.endusers.Customer;
 
 import java.time.LocalDateTime;
 
+@Entity
 public class Reservation extends Customer {
+
+    @Id
     private String reservationId;
     private int customerID;
     private int ticketID;
     private LocalDateTime reservationDate;
     private String status;
 
-    private Reservation(Customer.Builder builder) {
-        super(builder);
+    public Reservation() {
+
     }
 
     public Reservation(Builder builder) {
-        super(builder);
         this.reservationId = builder.reservationId;
         this.customerID = builder.customerID;
         this.ticketID = builder.ticketID;
@@ -70,15 +76,6 @@ public class Reservation extends Customer {
         private LocalDateTime reservationDate;
         private String status;
 
-        public Builder(String reservationId, int customerID, int ticketID, LocalDateTime reservationDate, String status) {
-            this.reservationId = reservationId;
-            this.customerID = customerID;
-            this.ticketID = ticketID;
-            this.reservationDate = reservationDate;
-            this.status = status;
-        }
-
-        public Builder() {}
 
         public Builder setReservationId(String reservationId) {
             this.reservationId = reservationId;

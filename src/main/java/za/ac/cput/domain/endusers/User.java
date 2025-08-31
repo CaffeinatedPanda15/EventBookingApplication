@@ -1,6 +1,13 @@
 package za.ac.cput.domain.endusers;
 
+
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class User {
+
+    @Id
     private String userName;
     private String fullname;
     private String emailAddress;

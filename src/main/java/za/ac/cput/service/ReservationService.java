@@ -2,11 +2,13 @@
 //STUDENT :221084096
 //Group kN13
 
+
 package za.ac.cput.service;
 
 import za.ac.cput.domain.eventdomains.Reservation;
-import za.ac.cput.repository.IReservationRepository;
+import za.ac.cput.repository.eventrepositories.IReservationRepository;
 import java.util.List;
+import java.util.Optional;
 
 public class ReservationService implements IReservationService {
 
@@ -26,17 +28,17 @@ public class ReservationService implements IReservationService {
 
     @Override
     public Reservation create(Reservation reservation) {
-        return repository.create(reservation);
+        return repository.save(reservation);
     }
 
     @Override
-    public Reservation read(String reservationID) {
-        return repository.read(reservationID);
+    public Optional<Reservation> read(String reservationID) {
+        return repository.findById(reservationID);
     }
 
     @Override
     public Reservation update(Reservation reservation) {
-        return repository.update(reservation);
+        return repository.update(Optional.ofNullable(reservation));
     }
 
     @Override
@@ -49,19 +51,19 @@ public class ReservationService implements IReservationService {
         return repository.getAll();
     }
 
-    // Extra convenience methods for your domain (optional)
+
     public void confirmReservation(String reservationID) {
-        Reservation res = repository.read(reservationID);
+        Optional<Reservation> res = repository.findById(reservationID);
         if (res != null) {
-            res.confirmReservation();
+            res.isPresent();
             repository.update(res);
         }
     }
 
     public void cancelReservation(String reservationID) {
-        Reservation res = repository.read(reservationID);
+        Optional<Reservation> res = repository.findById(reservationID);
         if (res != null) {
-            res.cancelReservation();
+            res.isPresent();
             repository.update(res);
         }
     }

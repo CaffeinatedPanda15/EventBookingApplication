@@ -11,4 +11,3 @@ public interface ICustomerRepository extends JpaRepository<Customer, String> {
 
 }
 
-//there is no need to write any implementations such as create,update etc beacuse spring boot generates it at runtime

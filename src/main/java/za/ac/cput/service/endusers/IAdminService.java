@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.endusers;
 
 import za.ac.cput.domain.endusers.Admin;
 import za.ac.cput.domain.endusers.Customer;

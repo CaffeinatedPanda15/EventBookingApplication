@@ -6,12 +6,12 @@ package za.ac.cput.service;
 
 import za.ac.cput.domain.eventdomains.Reservation;
 import java.util.List;
+import java.util.Optional;
 
 public interface IReservationService {
     Reservation create(Reservation reservation);
-    Reservation read(String reservationID);
+    Optional<Reservation> read(String reservationID);
     Reservation update(Reservation reservation);
     boolean delete(String reservationID);
     List<Reservation> getAll();
 }
-

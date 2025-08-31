@@ -2,21 +2,26 @@ package za.ac.cput.domain.eventdomains;
 
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import za.ac.cput.domain.endusers.Customer;
 
 import java.sql.Time;
 
+@Entity
 public class Event {
+
+    @Id
     private int eventId;
     private String eventName;
     private String eventDescription;
-    private Venue eventLocation;
+    private String eventLocation;
     private String eventDate;
     private Time eventTime;
     private String category;
     private EventStatus status;
 
-    private Event() {
+    public Event() {
     }
 
     private Event(Builder builder) {
@@ -42,7 +47,7 @@ public class Event {
         return eventDescription;
     }
 
-    public Venue getEventLocation() {
+    public String getEventLocation() {
         return eventLocation;
     }
 
@@ -80,7 +85,7 @@ public class Event {
         private int eventId;
         private String eventName;
         private String eventDescription;
-        private Venue eventLocation;
+        private String eventLocation;
         private String eventDate;
         private Time eventTime;
         private String category;
@@ -101,7 +106,7 @@ public class Event {
             return this;
         }
 
-        public Builder setEventLocation(Venue eventLocation) {
+        public Builder setEventLocation(String eventLocation) {
             this.eventLocation = eventLocation;
             return this;
         }
@@ -142,8 +147,6 @@ public class Event {
             return this;
         }
 
-        public Customer.Builder setVenueId(int venueId) {
-            return null;
-        }
+
     }//end of Builder
 }//end of class
