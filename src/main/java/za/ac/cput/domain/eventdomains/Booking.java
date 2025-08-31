@@ -1,38 +1,40 @@
 package za.ac.cput.domain.eventdomains;
 
-import za.ac.cput.domain.endusers.Customer;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-public class Booking extends Customer {
-    private String bookingId;
-    private int customerID;
-    private int ticketID;
-    private LocalDateTime bookingDate  ;
+@Entity
+@Table(name = "Booking")
+public class Booking {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long bookingId;
+
+    private long customerID;
+    private long ticketID;
+    private LocalDateTime bookingDate;
     private String status;
 
-    private Booking(Customer.Builder builder) {
-        super(builder);
-    }
+    protected Booking() {}
 
     public Booking(Builder builder) {
-        super(builder);
-        this.bookingId = builder.bookingID;
-        this.customerID = builder.customerID;;
-        this.ticketID = builder.customerID;
+        this.customerID = builder.customerID;
+        this.ticketID = builder.ticketID;
         this.bookingDate = builder.bookingDate;
         this.status = builder.status;
     }
 
-    public String getBookingId() {
+    public long getBookingId() {
         return bookingId;
     }
 
-    public int getCustomerID() {
+    public long getCustomerID() {
         return customerID;
     }
 
-    public int getTicketID() {
+    public long getTicketID() {
         return ticketID;
     }
 
@@ -44,46 +46,18 @@ public class Booking extends Customer {
         return status;
     }
 
-    @Override
-    public String toString() {
-        return "Booking{" +
-                ", customerID=" + customerID +
-                ", ticketID=" + ticketID +
-                ", bookingDate=" + bookingDate +
-                ", status='" + status + '\'' +
-                '}';
-    }
-
-    public static class Builder extends Customer.Builder {
-        private String bookingID;
-        private int customerID;
-        private int ticketID;
-        private LocalDateTime bookingDate  ;
+    public static class Builder {
+        private long customerID;
+        private long ticketID;
+        private LocalDateTime bookingDate;
         private String status;
 
-        public Builder(String bookingID, int customerID, int ticketID, LocalDateTime bookingDate, String status) {
-            this.bookingID = bookingID;
-            this.customerID = customerID;
-            this.ticketID = ticketID;
-            this.bookingDate = bookingDate;
-            this.status = status;
-        }
-
-        public Builder() {
-
-        }
-
-        public Builder setBookingID(String bookingID) {
-            this.bookingID = bookingID;
-            return this;
-        }
-
-        public Builder setCustomerID(int customerID) {
+        public Builder setCustomerID(long customerID) {
             this.customerID = customerID;
             return this;
         }
 
-        public Builder setTicketID(int ticketID) {
+        public Builder setTicketID(long ticketID) {
             this.ticketID = ticketID;
             return this;
         }
@@ -99,16 +73,26 @@ public class Booking extends Customer {
         }
 
         public Builder copy(Booking booking) {
-            this.bookingID = bookingID;
-            this.customerID = customerID;
-            this.ticketID = ticketID;
-            this.bookingDate = bookingDate;
-            this.status = status;
+            this.customerID = booking.getCustomerID();
+            this.ticketID = booking.getTicketID();
+            this.bookingDate = booking.getBookingDate();
+            this.status = booking.getStatus();
             return this;
         }
 
         public Booking build() {
             return new Booking(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "BookingService{" +
+                "bookingId=" + bookingId +
+                ", customerID=" + customerID +
+                ", ticketID=" + ticketID +
+                ", bookingDate=" + bookingDate +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
