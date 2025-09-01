@@ -4,23 +4,29 @@
 
 package za.ac.cput.services;
 
-import za.ac.cput.factory.eventfactories.PaymentFactory;
-import za.ac.cput.service.PaymentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Payment;
+import za.ac.cput.factory.eventfactories.PaymentFactory;
+import za.ac.cput.service.PaymentService;
+
 import java.util.Date;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 class PaymentServiceTest {
 
+    @Autowired
     private PaymentService service;
+
     private Payment payment;
 
     @BeforeEach
     void setUp() {
-        service = PaymentService.getService();
         payment = PaymentFactory.createPayment(
                 1,
                 1000.00,
