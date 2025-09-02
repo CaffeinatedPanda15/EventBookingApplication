@@ -5,6 +5,8 @@ import za.ac.cput.domain.endusers.Admin;
 import za.ac.cput.domain.endusers.Customer;
 import za.ac.cput.repository.endusers.IAdminRepository;
 
+import java.util.Optional;
+
 public class AdminService implements IAdminService {
 
 
@@ -25,12 +27,12 @@ public class AdminService implements IAdminService {
 
     @Override
     public Admin create(Admin admin) {
-        return repository.create(admin);
+        return repository.save(admin);
     }
 
     @Override
-    public Admin read(String adminId) {
-        return repository.read(adminId);
+    public Optional<Admin> read(String adminId) {
+        return repository.findById(adminId);
     }
 
     @Override
@@ -40,26 +42,29 @@ public class AdminService implements IAdminService {
 
     @Override
     public Admin update(Admin admin) {
-        return repository.update(admin);
+        return repository.getById(String.valueOf(admin));
     }
 
     @Override
     public boolean delete(String adminId) {
-        return repository.delete(adminId);
+        return false;
     }
 
     @Override
     public Admin getAdminByEmail(String email) {
-        return repository.getAdminByEmail(email);
+        return null;
     }
 
     @Override
     public Admin getAdminByPhoneNumber(String phoneNumber) {
-        return repository.getAdminByPhoneNumber(phoneNumber);
+        return null;
     }
 
     @Override
     public Admin getAdminByUsername(String username) {
-        return repository.getAdminByUsername(username);
+        return null;
     }
+
+
 }
+

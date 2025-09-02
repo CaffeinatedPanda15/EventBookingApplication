@@ -12,6 +12,6 @@ public interface IPaymentService {
     Payment create(Payment payment);
     Optional<Payment> read(int paymentID);
     Payment update(Payment payment);
-    boolean delete(int paymentID);
+    Payment delete(int paymentID);
     List<Payment> getAll();
 }

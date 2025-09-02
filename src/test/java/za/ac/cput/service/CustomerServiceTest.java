@@ -13,7 +13,7 @@ import za.ac.cput.service.endusers.ICustomerService;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("test")
+
 class CustomerServiceTest {
 
 

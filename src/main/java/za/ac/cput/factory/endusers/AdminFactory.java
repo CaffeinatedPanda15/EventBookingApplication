@@ -4,7 +4,7 @@ import za.ac.cput.domain.endusers.Customer;
 import za.ac.cput.domain.endusers.UserType;
 
 public class AdminFactory {
-    public static Customer createAdmin(String userName, String fullname, String emailAddress, String password, UserType userType, String address, String contactNumber) {
+    public static Customer createAdmin(String userName, String fullname, String emailAddress, String password, String userType, String address, String contactNumber) {
         if (userName == null || fullname == null || emailAddress == null || password == null || address == null || contactNumber == null) {
             return null;
         }
@@ -13,7 +13,7 @@ public class AdminFactory {
                 .setFullname(fullname)
                 .setEmailAddress(emailAddress)
                 .setPassword(password)
-                .setUserType(UserType.userType)
+                .setUserType(userType)
                 .setAddress(address)
                 .setContactNumber(contactNumber)
                 .build();

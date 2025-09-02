@@ -6,7 +6,7 @@ import za.ac.cput.domain.endusers.Customer;
 import za.ac.cput.repository.endusers.ICustomerRepository;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class CustomerService implements ICustomerService {
@@ -18,7 +18,6 @@ public class CustomerService implements ICustomerService {
         this.repository = repository;
     }
 
-
     @Override
     public Customer create(Customer customer) {
         return repository.save(customer);
@@ -26,8 +25,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Customer read(String customerId) {
-        Optional<Customer> result = repository.findById(customerId);
-        return result.orElse(null);
+        return repository.findById(customerId).orElse(null);
     }
 
     @Override
@@ -37,7 +35,6 @@ public class CustomerService implements ICustomerService {
         }
         return null;
     }
-
 
     @Override
     public boolean delete(String customerId) {
@@ -52,7 +49,15 @@ public class CustomerService implements ICustomerService {
     public List<Customer> getAll() {
         return repository.findAll();
     }
-}
 
 
-// we got our service annotation, dependency injection(ICustomerRepository) and crud operations
+    @Override
+    public Customer login(String email, String password) {
+        Customer customer = repository.findByEmailAddress(email);
+        if (customer != null && customer.getPassword().equals(password)) {
+            return customer;
+        }
+        throw new IllegalArgumentException("Invalid email or password");
+    }
+}//end of class
+

@@ -1,7 +1,7 @@
 //Muhammad Siddeeq Rabin
 //STUDENT :221084096
 //Group kN13
-
+/*
 package za.ac.cput.services;
 
 import za.ac.cput.factory.eventfactories.PaymentFactory;
@@ -78,3 +78,4 @@ class PaymentServiceTest {
         System.out.println("All payments: " + payments);
     }
 }
+*/

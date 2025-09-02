@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.endusers.Customer;
 import za.ac.cput.service.endusers.ICustomerService;
 
+
 import java.util.List;
 
 @RestController
@@ -42,5 +43,10 @@ public class CustomerController {
     public List<Customer> getAll() {
         return service.getAll();
     }
-}
+
+    @PostMapping("/login")
+    public Customer login(@RequestBody Customer customer) {
+        return service.login(customer.getEmailAddress(), customer.getPassword());
+    }
+}//end of class
 

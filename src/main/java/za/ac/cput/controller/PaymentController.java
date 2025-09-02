@@ -42,10 +42,7 @@ public class PaymentController {
     }
 
 
-    @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable("id") int paymentID) {
-        return service.delete(paymentID);
-    }
+
 
 
     @GetMapping("/getAll")

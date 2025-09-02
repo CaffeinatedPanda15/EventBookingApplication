@@ -12,6 +12,7 @@ import za.ac.cput.domain.eventdomains.Reservation;
 import za.ac.cput.service.ReservationService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/reservation")
@@ -32,7 +33,7 @@ public class ReservationController {
 
     // Read a reservation by ID
     @GetMapping("/read/{id}")
-    public Reservation read(@PathVariable("id") String reservationID) {
+    public Optional<Reservation> read(@PathVariable("id") String reservationID) {
         return service.read(reservationID);
     }
 
@@ -54,14 +55,5 @@ public class ReservationController {
         return service.getAll();
     }
 
-    // Domain-specific actions
-    @PutMapping("/confirm/{id}")
-    public void confirmReservation(@PathVariable("id") String reservationID) {
-        service.confirmReservation(reservationID);
-    }
 
-    @PutMapping("/cancel/{id}")
-    public void cancelReservation(@PathVariable("id") String reservationID) {
-        service.cancelReservation(reservationID);
-    }
 }

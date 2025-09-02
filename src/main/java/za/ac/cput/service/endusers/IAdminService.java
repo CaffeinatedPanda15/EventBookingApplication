@@ -3,12 +3,14 @@ package za.ac.cput.service.endusers;
 import za.ac.cput.domain.endusers.Admin;
 import za.ac.cput.domain.endusers.Customer;
 
+import java.util.Optional;
+
 public interface IAdminService {
     Customer create(Customer admin);
 
     Admin create(Admin admin);
 
-    Admin read(String adminId);
+    Optional<Admin> read(String adminId);
     Customer update(Customer admin);
 
     Admin update(Admin admin);

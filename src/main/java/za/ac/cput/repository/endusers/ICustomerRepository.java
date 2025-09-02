@@ -6,8 +6,10 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.endusers.Customer;
 
 
+
+
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, String> {
-
+    Customer findByEmailAddress(String emailAddress);
 }
 

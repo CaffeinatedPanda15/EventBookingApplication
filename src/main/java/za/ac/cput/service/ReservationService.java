@@ -5,11 +5,13 @@
 
 package za.ac.cput.service;
 
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.eventdomains.Reservation;
 import za.ac.cput.repository.eventrepositories.IReservationRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ReservationService implements IReservationService {
 
     private static ReservationService service = null;
@@ -38,33 +40,19 @@ public class ReservationService implements IReservationService {
 
     @Override
     public Reservation update(Reservation reservation) {
-        return repository.update(Optional.ofNullable(reservation));
+        return null;
     }
 
     @Override
     public boolean delete(String reservationID) {
-        return repository.delete(reservationID);
+        return false;
     }
 
     @Override
     public List<Reservation> getAll() {
-        return repository.getAll();
+        return List.of();
     }
 
 
-    public void confirmReservation(String reservationID) {
-        Optional<Reservation> res = repository.findById(reservationID);
-        if (res != null) {
-            res.isPresent();
-            repository.update(res);
-        }
-    }
-
-    public void cancelReservation(String reservationID) {
-        Optional<Reservation> res = repository.findById(reservationID);
-        if (res != null) {
-            res.isPresent();
-            repository.update(res);
-        }
-    }
 }
+

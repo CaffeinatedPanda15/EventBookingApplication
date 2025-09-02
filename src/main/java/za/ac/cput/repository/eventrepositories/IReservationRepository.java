@@ -10,11 +10,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IReservationRepository extends JpaRepository<Reservation, String> {
-    List<Reservation> findByEventId(String eventId);
 
-    Reservation update(Optional<Reservation> reservation);
-
-    boolean delete(String reservationID);
-
-    List<Reservation> getAll();
 }

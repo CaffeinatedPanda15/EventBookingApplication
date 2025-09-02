@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface IPaymentRepository extends JpaRepository<Payment, String> {
-    List<Payment> findByOrderId(String orderId);
 
-    boolean delete(int paymentID);
+
+
 }
