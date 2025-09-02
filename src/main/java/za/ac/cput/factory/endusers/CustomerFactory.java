@@ -13,7 +13,7 @@ public class CustomerFactory {
          }
        return new Customer.Builder()
                .setUserName(userName)
-               .setFullname(fullName)
+               .setFullName(fullName)
                .setEmailAddress(emailAddress)
                .setPassword(password)
                .setUserType(userType)

@@ -35,7 +35,7 @@ public class Customer {
 
     private Customer(Builder builder) {
         this.userName = builder.userName;
-        this.fullName = builder.Fullname;
+        this.fullName = builder.fullName;
         this.emailAddress = builder.emailAddress;
         this.password = builder.password;
         this.userType = builder.userType;
@@ -47,7 +47,7 @@ public class Customer {
         return userName;
     }
 
-    public String getFullname() {
+    public String getFullName() {
         return fullName;
     }
 
@@ -86,7 +86,7 @@ public class Customer {
 
     public static class Builder {
         private String userName;
-        private String Fullname;
+        private String fullName;
         private String emailAddress;
         private String password;
         private String userType;
@@ -98,8 +98,8 @@ public class Customer {
             return this;
         }
 
-        public Builder setFullname(String fullname) {
-            this.Fullname = fullname;
+        public Builder setFullName(String fullName) {
+            this.fullName = fullName;
             return this;
         }
 
@@ -135,7 +135,7 @@ public class Customer {
 
         public Builder copy(Customer customer) {
             this.userName = customer.userName;
-            this.Fullname = customer.fullName;
+            this.fullName = customer.fullName;
             this.emailAddress = customer.emailAddress;
             this.password = customer.password;
             this.userType = customer.userType;

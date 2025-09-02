@@ -40,7 +40,7 @@ class CustomerServiceTest {
                 "John Doe",
                 "johnDOw@gmail.com",
                 "password123",
-                UserType.CUSTOMER,
+                "CUSTOMER",
                 "123 Main St",
                 "555-1234"
         );
@@ -56,7 +56,7 @@ class CustomerServiceTest {
                 "Jane Doe",
                 "jane@gmail.com",
                 "securepass",
-                UserType.CUSTOMER,
+                "CUSTOMER",
                 "456 Main St",
                 "555-5678"
         );
@@ -65,7 +65,7 @@ class CustomerServiceTest {
 
         assertNotNull(saved);
         assertEquals("jane_doe", saved.getUserName());
-        assertEquals("Jane Doe", saved.getFullname());
+        assertEquals("Jane Doe", saved.getFullName());
         System.out.println(saved);
     }
 
@@ -74,7 +74,7 @@ class CustomerServiceTest {
         Customer read = service.read(c1.getUserName());
         assertNotNull(read);
         assertEquals("john_doe", read.getUserName());
-        assertEquals("John Doe", read.getFullname());
+        assertEquals("John Doe", read.getFullName());
         System.out.println(read);
     }
 
@@ -82,13 +82,13 @@ class CustomerServiceTest {
     void update() {
         Customer updatedNew = new Customer.Builder()
                 .copy(c1)
-                .setFullname("Jane Doe")
+                .setFullName("Jane Doe")
                 .build();
 
         Customer updated = service.update(updatedNew);
 
         assertNotNull(updated);
-        assertEquals("Jane Doe", updated.getFullname());
+        assertEquals("Jane Doe", updated.getFullName());
         System.out.println(updated);
     }
 }
