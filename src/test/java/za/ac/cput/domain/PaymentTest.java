@@ -2,12 +2,10 @@ package za.ac.cput.domain;
 
 
 import org.junit.jupiter.api.Test;
-import za.ac.cput.factory.eventfactories.PaymentFactory;
+import  za.ac.cput.factory.eventfactories.PaymentFactory;
 
 import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 class PaymentTest {
 
