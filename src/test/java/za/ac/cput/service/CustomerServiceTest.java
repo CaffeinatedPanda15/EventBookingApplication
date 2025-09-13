@@ -4,91 +4,94 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import za.ac.cput.domain.endusers.Customer;
-import za.ac.cput.domain.endusers.UserType;
-import za.ac.cput.factory.endusers.CustomerFactory;
-import za.ac.cput.service.endusers.ICustomerService;
+import za.ac.cput.domain.endusers.Admin;
+import za.ac.cput.factory.endusers.AdminFactory;
+import za.ac.cput.service.endusers.IAdminService;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-
-class CustomerServiceTest {
-
+class AdminServiceTest {
 
     @Autowired
     private javax.sql.DataSource dataSource;
 
-
     @Autowired
-    private ICustomerService service;
+    private IAdminService service;
 
-    private Customer c1;
+    private Admin a1;
+
+    private final String SYSTEM_ADMIN = "system"; // used as creator in tests
+
+    @BeforeEach
+    void setUp() {
+        a1 = AdminFactory.createAdmin(
+                "admin01",
+                "System Admin",
+                "admin01@example.com",
+                "password123"
+        );
+
+        service.create(a1, SYSTEM_ADMIN);
+    }
 
     @Test
     void testConnection() throws Exception {
         assertNotNull(dataSource.getConnection());
-        System.out.println("SQLite connection works!");
-    }
-
-    @BeforeEach
-    void setUp() {
-
-        c1 = CustomerFactory.createCustomer(
-                "john_doe",
-                "John Doe",
-                "johnDOw@gmail.com",
-                "password123",
-                "CUSTOMER",
-                "123 Main St",
-                "555-1234"
-        );
-
-
-        service.create(c1);
+        System.out.println("Database connection works!");
     }
 
     @Test
     void create() {
-        Customer newCustomer = CustomerFactory.createCustomer(
-                "jane_doe",
-                "Jane Doe",
-                "jane@gmail.com",
-                "securepass",
-                "CUSTOMER",
-                "456 Main St",
-                "555-5678"
+        Admin newAdmin = AdminFactory.createAdmin(
+                "admin02",
+                "Admin Two",
+                "admin02@example.com",
+                "securepass"
         );
 
-        Customer saved = service.create(newCustomer);
+        Admin saved = service.create(newAdmin, SYSTEM_ADMIN);
 
         assertNotNull(saved);
-        assertEquals("jane_doe", saved.getUserName());
-        assertEquals("Jane Doe", saved.getFullName());
+        assertEquals("admin02", saved.getUserName());
+        assertEquals("Admin Two", saved.getFullName());
+        assertEquals(SYSTEM_ADMIN, saved.getCreatedBy());       // verify creator
+        assertNotNull(saved.getCreatedDate());                  // verify createdDate
         System.out.println(saved);
     }
 
     @Test
     void read() {
-        Customer read = service.read(c1.getUserName());
+        Admin read = service.read(a1.getUserName());
         assertNotNull(read);
-        assertEquals("john_doe", read.getUserName());
-        assertEquals("John Doe", read.getFullName());
+        assertEquals("admin01", read.getUserName());
+        assertEquals("System Admin", read.getFullName());
+        assertEquals(SYSTEM_ADMIN, read.getCreatedBy());
         System.out.println(read);
     }
 
     @Test
     void update() {
-        Customer updatedNew = new Customer.Builder()
-                .copy(c1)
-                .setFullName("Jane Doe")
+        Admin updatedAdmin = new Admin.Builder()
+                .copy(a1)
+                .setFullName("Updated Admin Name")
                 .build();
 
-        Customer updated = service.update(updatedNew);
+        Admin updated = service.update(updatedAdmin);
 
         assertNotNull(updated);
-        assertEquals("Jane Doe", updated.getFullName());
+        assertEquals("Updated Admin Name", updated.getFullName());
+        assertEquals(SYSTEM_ADMIN, updated.getCreatedBy());  // createdBy remains unchanged
         System.out.println(updated);
+    }
+
+    @Test
+    void login() {
+        Admin loggedIn = service.login("admin01@example.com", "password123");
+        assertNotNull(loggedIn);
+        assertNotNull(loggedIn.getLastLogin()); // ensure lastLogin is updated
+        System.out.println(loggedIn);
     }
 }

@@ -1,70 +1,74 @@
 package za.ac.cput.service.endusers;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.endusers.Admin;
-import za.ac.cput.domain.endusers.Customer;
 import za.ac.cput.repository.endusers.IAdminRepository;
 
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.List;
 
+
+@Service
 public class AdminService implements IAdminService {
 
+    private final IAdminRepository repository;
 
-    private static AdminService service = null;
-    private IAdminRepository repository = null;
-
-    public static AdminService getService(){
-        if (service == null) {
-            service = new AdminService();
-        }
-        return service;
+    @Autowired
+    public AdminService(IAdminRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public Customer create(Customer admin) {
-        return null;
+    public Admin create(Admin admin, String currentAdminUsername) {
+        Admin adminToSave = new Admin.Builder()
+                .copy(admin)
+                .setCreatedBy(currentAdminUsername)
+                .setCreatedDate(LocalDateTime.now())
+                .build();
+        return repository.save(adminToSave);
     }
 
     @Override
-    public Admin create(Admin admin) {
-        return repository.save(admin);
-    }
-
-    @Override
-    public Optional<Admin> read(String adminId) {
-        return repository.findById(adminId);
-    }
-
-    @Override
-    public Customer update(Customer admin) {
-        return null;
+    public Admin read(String userName) {
+        return repository.findById(userName).orElse(null);
     }
 
     @Override
     public Admin update(Admin admin) {
-        return repository.getById(String.valueOf(admin));
+        if (repository.existsById(admin.getUserName())) {
+            return repository.save(admin);
+        }
+        return null;
     }
 
     @Override
-    public boolean delete(String adminId) {
+    public boolean delete(String userName) {
+        if (repository.existsById(userName)) {
+            repository.deleteById(userName);
+            return true;
+        }
         return false;
     }
 
     @Override
-    public Admin getAdminByEmail(String email) {
-        return null;
+    public List<Admin> getAll() {
+        return repository.findAll();
     }
+
 
     @Override
-    public Admin getAdminByPhoneNumber(String phoneNumber) {
-        return null;
+    public Admin login(String email, String password) {
+        Admin admin = repository.findByEmailAddress(email);
+        if (admin != null && admin.getPassword().equals(password)) {
+            Admin updatedAdmin = new Admin.Builder()
+                    .copy(admin)
+                    .setLastLogin(LocalDateTime.now())
+                    .build();
+            repository.save(updatedAdmin);
+            return updatedAdmin;
+        }
+        throw new IllegalArgumentException("Invalid email or password");
     }
-
-    @Override
-    public Admin getAdminByUsername(String username) {
-        return null;
-    }
-
-
-}
+}//end of class
 

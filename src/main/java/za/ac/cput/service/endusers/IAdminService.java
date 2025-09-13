@@ -1,22 +1,19 @@
 package za.ac.cput.service.endusers;
 
-import za.ac.cput.domain.endusers.Admin;
-import za.ac.cput.domain.endusers.Customer;
 
-import java.util.Optional;
+import za.ac.cput.domain.endusers.Admin;
+
+import java.util.List;
 
 public interface IAdminService {
-    Customer create(Customer admin);
+    
+    Admin create(Admin admin, String currentAdminUsername);
 
-    Admin create(Admin admin);
+    Admin login(String email, String password);
 
-    Optional<Admin> read(String adminId);
-    Customer update(Customer admin);
-
+    Admin read(String userName);
     Admin update(Admin admin);
-
-    boolean delete(String adminId);
-    Admin getAdminByEmail(String email);
-    Admin getAdminByPhoneNumber(String phoneNumber);
-    Admin getAdminByUsername(String username);
+    boolean delete(String userName);
+    List<Admin> getAll();
 }
+
