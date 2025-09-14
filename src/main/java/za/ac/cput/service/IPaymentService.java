@@ -6,11 +6,12 @@ package za.ac.cput.service;
 
 import za.ac.cput.domain.Payment;
 import java.util.List;
+import java.util.Optional;
 
 public interface IPaymentService {
     Payment create(Payment payment);
-    Payment read(int paymentID);
+    Optional<Payment> read(int paymentID);
     Payment update(Payment payment);
-    boolean delete(int paymentID);
+    Payment delete(int paymentID);
     List<Payment> getAll();
 }

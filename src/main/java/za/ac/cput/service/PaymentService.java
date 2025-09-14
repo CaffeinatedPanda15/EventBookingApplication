@@ -1,51 +1,57 @@
-//Muhammad Siddeeq Rabin
-//STUDENT :221084096
-//Group kN13
-
 package za.ac.cput.service;
 
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Payment;
-import za.ac.cput.repository.PaymentRepository;
-import java.util.List;
+import za.ac.cput.repository.eventrepositories.IPaymentRepository;
 
+import java.util.List;
+import java.util.Optional;
+
+@Service
 public class PaymentService implements IPaymentService {
 
     private static PaymentService service = null;
-    private PaymentRepository repository = null;
+    private static IPaymentRepository repository;
 
-    private PaymentService() {
-        this.repository = PaymentRepository.getRepository();
+    private PaymentService(IPaymentRepository repository) {
+        this.repository = repository;
     }
 
     public static PaymentService getService() {
         if (service == null) {
-            service = new PaymentService();
+            service = new PaymentService(repository);
         }
         return service;
     }
 
     @Override
     public Payment create(Payment payment) {
-        return repository.create(payment);
+        return repository.save(payment);
     }
 
     @Override
-    public Payment read(int paymentID) {
-        return repository.read(paymentID);
+    public Optional<Payment> read(int paymentID) {
+        return repository.findById(String.valueOf(paymentID));
     }
 
     @Override
     public Payment update(Payment payment) {
-        return repository.update(payment);
+        return repository.save(payment);
     }
 
     @Override
-    public boolean delete(int paymentID) {
-        return repository.delete(paymentID);
+    public Payment delete(int paymentID) {
+        Optional<Payment> payment = read(paymentID);
+        if (payment.isPresent()) {
+            repository.delete(payment.get());
+            return payment.get();
+        }
+        return null;
     }
+
 
     @Override
     public List<Payment> getAll() {
-        return repository.getAll();
+        return repository.findAll();
     }
 }

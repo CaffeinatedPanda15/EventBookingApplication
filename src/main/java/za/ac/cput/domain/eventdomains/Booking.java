@@ -1,40 +1,36 @@
+
 package za.ac.cput.domain.eventdomains;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Booking")
 public class Booking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long bookingId;
-
-    private long customerID;
-    private long ticketID;
-    private LocalDateTime bookingDate;
+    private String bookingId;
+    private int ticketID;
+    private LocalDateTime bookingDate  ;
     private String status;
 
-    protected Booking() {}
+    public Booking() {
+
+    }
 
     public Booking(Builder builder) {
-        this.customerID = builder.customerID;
-        this.ticketID = builder.ticketID;
+        this.bookingId = builder.bookingID;
         this.bookingDate = builder.bookingDate;
         this.status = builder.status;
     }
 
-    public long getBookingId() {
+    public String getBookingId() {
         return bookingId;
     }
 
-    public long getCustomerID() {
-        return customerID;
-    }
 
-    public long getTicketID() {
+    public int getTicketID() {
         return ticketID;
     }
 
@@ -46,18 +42,29 @@ public class Booking {
         return status;
     }
 
+    @Override
+    public String toString() {
+        return "Booking{" +
+                ", ticketID=" + ticketID +
+                ", bookingDate=" + bookingDate +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
     public static class Builder {
-        private long customerID;
-        private long ticketID;
-        private LocalDateTime bookingDate;
+        private String bookingID;
+        private int ticketID;
+        private LocalDateTime bookingDate  ;
         private String status;
 
-        public Builder setCustomerID(long customerID) {
-            this.customerID = customerID;
+
+        public Builder setBookingID(String bookingID) {
+            this.bookingID = bookingID;
             return this;
         }
 
-        public Builder setTicketID(long ticketID) {
+
+        public Builder setTicketID(int ticketID) {
             this.ticketID = ticketID;
             return this;
         }
@@ -73,10 +80,10 @@ public class Booking {
         }
 
         public Builder copy(Booking booking) {
-            this.customerID = booking.getCustomerID();
-            this.ticketID = booking.getTicketID();
-            this.bookingDate = booking.getBookingDate();
-            this.status = booking.getStatus();
+            this.bookingID = bookingID;
+            this.ticketID = ticketID;
+            this.bookingDate = bookingDate;
+            this.status = status;
             return this;
         }
 
@@ -84,15 +91,4 @@ public class Booking {
             return new Booking(this);
         }
     }
-
-    @Override
-    public String toString() {
-        return "BookingService{" +
-                "bookingId=" + bookingId +
-                ", customerID=" + customerID +
-                ", ticketID=" + ticketID +
-                ", bookingDate=" + bookingDate +
-                ", status='" + status + '\'' +
-                '}';
-    }
-}
+}//end of class

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.Payment;
 import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
+import  za.ac.cput.factory.eventfactories.PaymentFactory;
 
 class PaymentFactoryTest {
 

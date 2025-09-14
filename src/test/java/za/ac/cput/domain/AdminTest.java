@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AdminTest {
 
     private static Customer a1 = AdminFactory.createAdmin("admin123", "Admin User", "5555@gmail.com",
-            "adminspassword", UserType.valueOf("ADMIN"), "555 Admin Street", "123456789");
+            "adminspassword", "Customer", "555 Admin Street", "123456789");
 
     @Test
     void createAdmin() {

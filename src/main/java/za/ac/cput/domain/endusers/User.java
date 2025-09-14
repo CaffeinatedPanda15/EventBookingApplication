@@ -1,33 +1,50 @@
 package za.ac.cput.domain.endusers;
+/*
 
+import jakarta.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_type")
 public abstract class User {
+
+    @Id
+    @Column(name = "username")
     private String userName;
+
+    @Column(name = "fullname")
     private String fullname;
+
+    @Column(name = "email", unique = true)
     private String emailAddress;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "usertype")
     private UserType userType;
 
 
     public User() {
     }
 
-    public static String getUserName() {
+    public  String getUserName() {
         return userName;
     }
 
-    public static String getFullname() {
+    public  String getFullname() {
         return fullname;
     }
 
-    public static String getEmailAddress() {
+    public String getEmailAddress() {
         return emailAddress;
     }
 
-    public static String getPassword() {
+    public  String getPassword() {
         return password;
     }
 
-    public static UserType getUserType() {
+    public  UserType getUserType() {
         return userType;
     }
 
@@ -62,3 +79,4 @@ public abstract class User {
                 '}';
     }
 }//end of class
+*/
