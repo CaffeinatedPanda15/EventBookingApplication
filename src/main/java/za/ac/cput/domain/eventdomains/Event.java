@@ -2,16 +2,30 @@ package za.ac.cput.domain.eventdomains;
 
 
 
+import jakarta.persistence.*;
+
 import java.sql.Time;
 
+@Entity
+@Table(name = "Event")
 public class Event {
-    private int eventId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long eventId;
+
+    @Column
     private String eventName;
+    @Column
     private String eventDescription;
-    private Venue eventLocation;
+    @Column
+    private String eventLocation;
+    @Column
     private String eventDate;
+    @Column
     private Time eventTime;
+    @Column
     private String category;
+    @Column
     private EventStatus status;
 
     private Event() {
@@ -28,7 +42,8 @@ public class Event {
         this.status = builder.status;
     }
 
-    public int getEventId() {
+
+    public long getEventId() {
         return eventId;
     }
 
@@ -40,7 +55,7 @@ public class Event {
         return eventDescription;
     }
 
-    public Venue getEventLocation() {
+    public String getEventLocation() {
         return eventLocation;
     }
 
@@ -78,7 +93,7 @@ public class Event {
         private int eventId;
         private String eventName;
         private String eventDescription;
-        private Venue eventLocation;
+        private String eventLocation;
         private String eventDate;
         private Time eventTime;
         private String category;
@@ -99,7 +114,7 @@ public class Event {
             return this;
         }
 
-        public Builder setEventLocation(Venue eventLocation) {
+        public Builder setEventLocation(String eventLocation) {
             this.eventLocation = eventLocation;
             return this;
         }
@@ -129,7 +144,6 @@ public class Event {
         }
 
         public Builder copy(Event event) {
-            this.eventId = event.eventId;
             this.eventName = event.eventName;
             this.eventDescription = event.eventDescription;
             this.eventLocation = event.eventLocation;

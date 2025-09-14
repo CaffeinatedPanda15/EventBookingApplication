@@ -1,7 +1,7 @@
 package za.ac.cput.util;
 
-import za.ac.cput.EventApplication.models.Booking;
-import za.ac.cput.EventApplication.models.BookingDTO;
+import za.ac.cput.domain.eventdomains.Booking;
+import za.ac.cput.domain.eventdomains.BookingDTO;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

@@ -14,8 +14,8 @@ public class BookingFactory {
 
             return null;
 
-        return new Booking.Builder().setBookingID(bookingID)
-                .setCustomerID(customerID).setTicketID(ticketID)
+        return new Booking.Builder().
+                setCustomerID(customerID).setTicketID(ticketID)
                 .setBookingDate(bookingDate).setStatus(status).build();
 
 

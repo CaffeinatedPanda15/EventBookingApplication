@@ -1,22 +1,20 @@
 package za.ac.cput.service;
 
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import za.ac.cput.EventApplication.models.Booking;
-import za.ac.cput.EventApplication.repository.BookingRepo;
+import za.ac.cput.domain.eventdomains.Booking;
+import za.ac.cput.repository.BookingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class BookingServices implements iService<Booking, Long> {
+public class Services implements iService<Booking, Long> {
 
     private final BookingRepo bookingRepository;
 
     @Autowired
-    public BookingServices(BookingRepo bookingRepository) {
+    public Services(BookingRepo bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
 

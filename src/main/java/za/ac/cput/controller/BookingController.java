@@ -4,21 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import za.ac.cput.EventApplication.models.Booking;
-import za.ac.cput.EventApplication.repository.BookingRepo;
-import za.ac.cput.EventApplication.services.BookingServices;
-import za.ac.cput.EventApplication.services.iService;
+import za.ac.cput.domain.eventdomains.Booking;
+import za.ac.cput.service.Services;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/bookings") // recommended for RESTful routes
+@RequestMapping("/api/bookings")
 public class BookingController {
 
-    private final BookingServices bookingServices;
+    private final Services bookingServices;
 
     @Autowired
-    public BookingController(BookingServices bookingServices) {
+    public BookingController(Services bookingServices) {
         this.bookingServices = bookingServices;
     }
 
@@ -53,13 +51,17 @@ public class BookingController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        existing.setBookingDate(bookingData.getBookingDate());
-        existing.setTicketID(bookingData.getTicketID());
-        existing.setCustomerID(bookingData.getCustomerID());
-        existing.setStatus(bookingData.getStatus());
+        Booking updatedBooking = new Booking.Builder()
+                .copy(existing)
+                .setBookingDate(bookingData.getBookingDate())
+                .setTicketID(bookingData.getTicketID())
+                .setCustomerID(bookingData.getCustomerID())
+                .setStatus(bookingData.getStatus())
+                .build();
 
-        return new ResponseEntity<>(bookingServices.update(existing), HttpStatus.OK);
+        return new ResponseEntity<>(bookingServices.update(updatedBooking), HttpStatus.OK);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteBooking(@PathVariable Long id) {
