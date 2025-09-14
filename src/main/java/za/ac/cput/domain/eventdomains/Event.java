@@ -3,9 +3,12 @@ package za.ac.cput.domain.eventdomains;
 
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.sql.Time;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "Event")
 public class Event {
@@ -22,13 +25,13 @@ public class Event {
     @Column
     private String eventDate;
     @Column
-    private Time eventTime;
+    private String eventTime;
     @Column
     private String category;
     @Column
-    private EventStatus status;
+    private String status;
 
-    private Event() {
+    protected Event() {
     }
 
     private Event(Builder builder) {
@@ -41,6 +44,7 @@ public class Event {
         this.category = builder.category;
         this.status = builder.status;
     }
+
 
 
     public long getEventId() {
@@ -63,7 +67,7 @@ public class Event {
         return eventDate;
     }
 
-    public Time getEventTime() {
+    public String getEventTime() {
         return eventTime;
     }
 
@@ -71,7 +75,7 @@ public class Event {
         return category;
     }
 
-    public EventStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -90,14 +94,14 @@ public class Event {
     }
 
     public static class Builder {
-        private int eventId;
+        private long eventId;
         private String eventName;
         private String eventDescription;
         private String eventLocation;
         private String eventDate;
-        private Time eventTime;
+        private String eventTime;
         private String category;
-        private EventStatus status;
+        private String status;
 
         public Builder setEventId(int eventId) {
             this.eventId = eventId;
@@ -124,7 +128,7 @@ public class Event {
             return this;
         }
 
-        public Builder setEventTime(Time eventTime) {
+        public Builder setEventTime(String eventTime) {
             this.eventTime = eventTime;
             return this;
         }
@@ -134,7 +138,7 @@ public class Event {
             return this;
         }
 
-        public Builder setStatus(EventStatus status) {
+        public Builder setStatus(String status) {
             this.status = status;
             return this;
         }
@@ -155,4 +159,34 @@ public class Event {
         }
 
     }//end of Builder
+
+    @JsonCreator
+    public static Event createFromJson(
+            @JsonProperty("eventId") Integer eventId,
+            @JsonProperty("eventName") String eventName,
+            @JsonProperty("eventDescription") String eventDescription,
+            @JsonProperty("eventLocation") String eventLocation,
+            @JsonProperty("eventDate") String eventDate,
+            @JsonProperty("eventTime") String eventTimeStr,       // accept string "HH:mm:ss"
+            @JsonProperty("category") String category,
+            @JsonProperty("status") String statusStr
+    ) {
+        Event.Builder b = new Event.Builder();
+        if (eventId != null) b.setEventId(eventId);
+        b.setEventName(eventName)
+                .setEventDescription(eventDescription)
+                .setEventLocation(eventLocation)
+                .setEventDate(eventDate)
+                .setCategory(category);
+
+        if (eventTimeStr != null && !eventTimeStr.isBlank()) {
+            b.setEventTime(eventTimeStr);
+        }
+        if (statusStr != null && !statusStr.isBlank()) {
+            b.setStatus(statusStr);
+        }
+        return b.build();
+    }
+
+
 }//end of class
