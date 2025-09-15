@@ -6,7 +6,7 @@ import za.ac.cput.domain.eventdomains.Event;
 import java.sql.Time;
 
 public class EventFactory {
-   public static Event createEvent(String eventName, String eventDate, Time eventTime, String eventLocation, String eventDescription) {
+   public static Event createEvent(String eventName, String eventDate, String eventTime, String eventLocation, String eventDescription) {
          if (eventName == null || eventDate == null || eventTime == null || eventLocation == null || eventDescription == null) {
                 return null;
 
