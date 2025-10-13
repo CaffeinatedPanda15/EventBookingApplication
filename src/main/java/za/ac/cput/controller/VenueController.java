@@ -1,10 +1,12 @@
 package za.ac.cput.controller;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import za.ac.cput.domain.eventdomains.EventDTO;
 import za.ac.cput.domain.eventdomains.Venue;
 import za.ac.cput.service.IVenueService;
 
@@ -22,7 +24,13 @@ public class VenueController {
     }
 
     @PostMapping("/create")
-    public Venue create (@RequestBody Venue venue) {
+    public Venue create (@RequestBody VenueDTO dto) {
+
+        EventDTO created = venueService.createEvent(dto);
+        if (created != null) {
+            return new ResponseEntity<>(created, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return venueService.create(venue);
     }
 
