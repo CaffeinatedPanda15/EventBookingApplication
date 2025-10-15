@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import za.ac.cput.domain.eventdomains.Catering;
 import za.ac.cput.domain.eventdomains.CateringDTO;
-import za.ac.cput.domain.eventdomains.EventDTO;
-import za.ac.cput.repository.eventrepositories.ICateringRepository;
-import za.ac.cput.service.ICateringService;
 import za.ac.cput.service.endusers.CateringService;
 
 import java.io.IOException;
@@ -23,13 +20,13 @@ public class CateringController {
 
     private final CateringService cateringService;
 
-    public CateringController(ICateringService cateringService) {
+    public CateringController(CateringService cateringService) {
         this.cateringService = cateringService;
     }
 
 
     @PostMapping
-    public ResponseEntity<CateringDTO> createEvent(@RequestBody CateringDTO dto) {
+    public ResponseEntity<CateringDTO> createCaterer(@RequestBody CateringDTO dto) {
         CateringDTO created = cateringService.createCater(dto);
         if (created != null) {
             return new ResponseEntity<>(created, HttpStatus.CREATED);
@@ -38,8 +35,8 @@ public class CateringController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CateringDTO> getEvent(@PathVariable int id) {
-        CateringDTO cater = cateringService.readCaters(id);
+    public ResponseEntity<CateringDTO> getCatering(@PathVariable int id) {
+        CateringDTO cater = cateringService.readCatering(id);
         if (cater != null) {
             return new ResponseEntity<>(cater, HttpStatus.OK);
         }
@@ -47,8 +44,8 @@ public class CateringController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CateringDTO> updateEvent(@PathVariable int id, @RequestBody CateringDTO dto) {
-        CateringDTO updated = cateringService.updateCater(id, dto);
+    public ResponseEntity<CateringDTO> updateCatering(@PathVariable int id, @RequestBody CateringDTO dto) {
+        CateringDTO updated = cateringService.updateCatering(id, dto);
         if (updated != null) {
             return new ResponseEntity<>(updated, HttpStatus.OK);
         }
@@ -57,49 +54,49 @@ public class CateringController {
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEvent(@PathVariable int id) {
-        boolean deleted = cateringService.deleteCater(id);
+    public ResponseEntity<Void> deleteCatering(@PathVariable int id) {
+        boolean deleted = cateringService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
-    @PostMapping("/create")
-    public Catering create(@RequestBody Catering catering) {
-        return cateringService.create(catering);
-    }
-
-    @GetMapping("/read/{id}")
-    public Catering read(@PathVariable int id) {
-        return cateringService.read(id);
-    }
-
-    @PutMapping("/update")
-    public Catering update(@RequestBody Catering catering) {
-        return cateringService.update(catering);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable int id) {
-        return cateringService.delete(id);
-    }
-
-    @GetMapping("/all")
-    public List<Catering> getAll() {
-        return cateringService.getAll();
-    }
-
-    @PostMapping(value = "/{id}/uploadImage", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Catering uploadImage(@PathVariable int id,
-                                @RequestParam("image") MultipartFile image) throws IOException {
-        return cateringService.updateCateringImage(id, image.getBytes());
-    }
+//
+//    @PostMapping("/create")
+//    public Catering create(@RequestBody Catering catering) {
+//        return cateringService.create(catering);
+//    }
+//
+//    @GetMapping("/read/{id}")
+//    public Catering read(@PathVariable int id) {
+//        return cateringService.read(id);
+//    }
+//
+//    @PutMapping("/update")
+//    public Catering update(@RequestBody Catering catering) {
+//        return cateringService.update(catering);
+//    }
+//
+//    @DeleteMapping("/delete/{id}")
+//    public boolean delete(@PathVariable int id) {
+//        return cateringService.delete(id);
+//    }
+//
+//    @GetMapping("/all")
+//    public List<Catering> getAll() {
+//        return cateringService.getAll();
+//    }
+//
+//    @PostMapping(value = "/{id}/uploadImage", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public Catering uploadImage(@PathVariable int id,
+//                                @RequestParam("image") MultipartFile image) throws IOException {
+//        return cateringService.updateCateringImage(id, image.getBytes());
+//    }
 
     @GetMapping("/{id}/image")
     public ResponseEntity<byte[]> getImage(@PathVariable int id) {
-        Catering catering = cateringService.read(id);
+        CateringDTO catering = cateringService.readCatering(id);
         if (catering == null || catering.getCateringImage() == null) {
             return ResponseEntity.notFound().build();
         }

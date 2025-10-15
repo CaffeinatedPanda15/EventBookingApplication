@@ -3,10 +3,7 @@ package za.ac.cput.service.endusers;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.eventdomains.Catering;
 import za.ac.cput.domain.eventdomains.CateringDTO;
-import za.ac.cput.domain.eventdomains.Event;
-import za.ac.cput.domain.eventdomains.EventDTO;
 import za.ac.cput.repository.eventrepositories.ICateringRepository;
-import za.ac.cput.service.ICateringService;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,13 +47,13 @@ public class CateringService{
         return builder.build();
     }
 
-    public CateringDTO createEvent(CateringDTO dto) {
+    public CateringDTO createCater(CateringDTO dto) {
         Catering catering = toEntity(dto);
         catering = CateringRepo.save(catering);
         return toDTO(catering);
     }
 
-    public CateringDTO readEvent(int id) {
+    public CateringDTO readCatering(int id) {
         Optional<Catering> optionalCatering = CateringRepo.findById(id);
         if (optionalCatering.isPresent()) {
             return toDTO(optionalCatering.get());
