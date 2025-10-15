@@ -1,11 +1,14 @@
 package za.ac.cput.domain.eventdomains;
 
 
-
+import za.ac.cput.domain.eventdomains.Catering;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -25,7 +28,21 @@ public class Event {
     @Column
     private String eventDate;
     @Column
+    private String email;
+    @Column
+    private String contactNumber;
+
+    @ManyToMany
+    @JoinTable(
+            name = "event_catering",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "catering_id")
+    )
+    private List<Catering> caterings;
+
+    @Column
     private String eventTime;
+
     @Column
     private String category;
     @Column
@@ -99,6 +116,9 @@ public class Event {
         private String eventDescription;
         private String eventLocation;
         private String eventDate;
+        private Catering cater;
+        private String email;
+        private String phoneNumber;
         private String eventTime;
         private String category;
         private String status;
