@@ -16,5 +16,5 @@ public interface IVenueService {
 
     List<Venue> getAll();
 
-    Venue updateVenueImage(int venueId, byte[] newImage);
+
 }

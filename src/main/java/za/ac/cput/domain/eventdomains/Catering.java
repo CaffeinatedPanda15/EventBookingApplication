@@ -15,6 +15,7 @@ public class Catering {
     protected String cateringDescription;
     protected double cateringPrice;
     protected String cateringContact;
+    protected String cateringEmail;
     @Lob
     protected byte[] cateringImage;
 
@@ -25,6 +26,7 @@ public class Catering {
         this.cateringDescription = builder.cateringDescription;
         this.cateringPrice = builder.cateringPrice;
         this.cateringContact = builder.cateringContact;
+        this.cateringEmail = builder.cateringContact;
         this.cateringImage = builder.cateringImage;
     }
 
@@ -56,6 +58,10 @@ public class Catering {
         return cateringContact;
     }
 
+    public String getCateringEmail() {
+        return cateringEmail;
+    }
+
     public byte[] getCateringImage() {
         return cateringImage;
     }
@@ -69,6 +75,7 @@ public class Catering {
                 ", cateringDescription='" + cateringDescription + '\'' +
                 ", cateringPrice=" + cateringPrice +
                 ", cateringContact='" + cateringContact + '\'' +
+                ", cateringEmail='" + cateringEmail + '\'' +
                 ", cateringImage=" + Arrays.toString(cateringImage) +
                 '}';
     }
@@ -80,6 +87,7 @@ public class Catering {
         private String cateringDescription;
         private double cateringPrice;
         private String cateringContact;
+        private String cateringEmail;
         private byte[] cateringImage;
 
         public Builder setCateringId(int cateringId) {
@@ -112,6 +120,11 @@ public class Catering {
             return this;
         }
 
+        public Builder setCateringEmail(String cateringEmail) {
+            this.cateringEmail = cateringEmail;
+            return this;
+        }
+
         public Builder setCateringImage(byte[] cateringImage) {
             this.cateringImage = cateringImage;
             return this;
@@ -124,6 +137,7 @@ public class Catering {
             this.cateringDescription = cataring.cateringDescription;
             this.cateringPrice = cataring.cateringPrice;
             this.cateringContact = cataring.cateringContact;
+            this.cateringEmail = cataring.cateringEmail;
             this.cateringImage = cataring.cateringImage;
             return this;
         }

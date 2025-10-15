@@ -51,18 +51,5 @@ public class VenueService implements IVenueService {
         return venueRepository.findAll();
     }
 
-    @Override
-    public Venue updateVenueImage(int venueId, byte[] newImage) {
-        Optional<Venue> optionalVenue = venueRepository.findById(venueId);
-        if (optionalVenue.isPresent()) {
-        Venue v = optionalVenue.get();
-        v = new Venue.Builder()
-                .copy(v)
-                .setVenueImage(newImage)
-                .build();
-        return venueRepository.save(v);
-        }
-        return null;
-    }
 
 }//end of class
