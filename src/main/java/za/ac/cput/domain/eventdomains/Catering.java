@@ -6,17 +6,17 @@ import jakarta.persistence.Lob;
 
 import java.util.Arrays;
 
-@Entity
+@Entity (name = "Catering")
 public class Catering {
     @Id
-    protected int cateringId;
-    protected String cateringName;
-    protected String cateringType;
-    protected String cateringDescription;
-    protected double cateringPrice;
-    protected String cateringContact;
+    private int cateringId;
+    private String cateringName;
+    private String cateringType;
+    private String cateringDescription;
+    private double cateringPrice;
+    private String cateringContact;
     @Lob
-    protected byte[] cateringImage;
+    private byte[] cateringImage;
 
     protected Catering(Builder builder) {
         this.cateringId = builder.cateringId;
