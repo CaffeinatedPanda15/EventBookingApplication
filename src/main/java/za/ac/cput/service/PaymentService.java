@@ -3,6 +3,7 @@ package za.ac.cput.service;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Payment;
 import za.ac.cput.repository.eventrepositories.IPaymentRepository;
+import za.ac.cput.service.Iservice.IPaymentService;
 
 import java.util.List;
 import java.util.Optional;

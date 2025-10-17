@@ -7,8 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import za.ac.cput.domain.eventdomains.Catering;
-import za.ac.cput.repository.eventrepositories.ICateringRepository;
-import za.ac.cput.service.ICateringService;
+import za.ac.cput.service.Iservice.ICateringService;
 
 import java.io.IOException;
 import java.util.List;

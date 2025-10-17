@@ -1,14 +1,11 @@
 package za.ac.cput.controller;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import za.ac.cput.domain.eventdomains.Venue;
-import za.ac.cput.service.IVenueService;
+import za.ac.cput.service.Iservice.IVenueService;
 
-import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;

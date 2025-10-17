@@ -3,7 +3,7 @@ package za.ac.cput.service.endusers;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.eventdomains.Catering;
 import za.ac.cput.repository.eventrepositories.ICateringRepository;
-import za.ac.cput.service.ICateringService;
+import za.ac.cput.service.Iservice.ICateringService;
 
 import java.util.List;
 import java.util.Optional;

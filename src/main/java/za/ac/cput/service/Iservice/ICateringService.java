@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.Iservice;
 
 import za.ac.cput.domain.eventdomains.Catering;
 
