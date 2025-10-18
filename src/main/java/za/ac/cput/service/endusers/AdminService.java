@@ -1,6 +1,8 @@
 package za.ac.cput.service.endusers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.endusers.Admin;
 import za.ac.cput.repository.endusers.IAdminRepository;
@@ -13,16 +15,20 @@ import java.util.List;
 public class AdminService implements IAdminService {
 
     private final IAdminRepository repository;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
-    public AdminService(IAdminRepository repository) {
+    public AdminService(IAdminRepository repository, PasswordEncoder passwordencoder) {
         this.repository = repository;
+        this.passwordEncoder = passwordencoder;
     }
 
     @Override
     public Admin create(Admin admin, String currentAdminUsername) {
         Admin adminToSave = new Admin.Builder()
                 .copy(admin)
+                .setPassword(passwordEncoder.encode(admin.getPassword()))
                 .setCreatedBy(currentAdminUsername)
                 .setCreatedDate(LocalDateTime.now())
                 .build();
@@ -37,7 +43,11 @@ public class AdminService implements IAdminService {
     @Override
     public Admin update(Admin admin) {
         if (repository.existsById(admin.getUserName())) {
-            return repository.save(admin);
+            Admin updatedAdmin = new Admin.Builder()
+                    .copy(admin)
+                    .setPassword(passwordEncoder.encode(admin.getPassword()))
+                    .build();
+            return repository.save(updatedAdmin);
         }
         return null;
     }
@@ -60,7 +70,7 @@ public class AdminService implements IAdminService {
     @Override
     public Admin login(String email, String password) {
         Admin admin = repository.findByEmailAddress(email);
-        if (admin != null && admin.getPassword().equals(password)) {
+        if (admin != null && passwordEncoder.matches(password, admin.getPassword())) {
             Admin updatedAdmin = new Admin.Builder()
                     .copy(admin)
                     .setLastLogin(LocalDateTime.now())
