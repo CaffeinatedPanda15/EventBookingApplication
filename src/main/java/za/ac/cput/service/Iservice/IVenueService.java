@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IVenueService {
 
-    Venue create(Venue venue);
+    Venue createVenue(Venue venue);
 
     Venue read(int venueId);
 
