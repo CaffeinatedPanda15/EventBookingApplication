@@ -96,4 +96,8 @@ public class VenueController {
                 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg") // adjust if PNG
                 .body(venue.getVenueImage());
     }
+
+    public List<String> getAllVenueNames() {
+        return venueService.getAllVenueNames();
+    }
 }//end of class

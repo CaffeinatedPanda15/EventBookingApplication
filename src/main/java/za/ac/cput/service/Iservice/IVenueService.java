@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IVenueService {
 
-    Venue createVenue(Venue venue);
+    Venue create(Venue venue);
 
     Venue read(int venueId);
 
@@ -15,6 +15,8 @@ public interface IVenueService {
     boolean delete(int venueId);
 
     List<Venue> getAll();
+
+    List<String> getAllVenueNames();
 
 
 }
