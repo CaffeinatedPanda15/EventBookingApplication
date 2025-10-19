@@ -8,6 +8,8 @@ package za.ac.cput.service;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.eventdomains.Reservation;
 import za.ac.cput.repository.eventrepositories.IReservationRepository;
+import za.ac.cput.service.Iservice.IReservationService;
+
 import java.util.List;
 import java.util.Optional;
 

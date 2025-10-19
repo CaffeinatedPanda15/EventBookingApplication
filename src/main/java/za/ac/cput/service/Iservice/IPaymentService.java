@@ -2,7 +2,7 @@
 //STUDENT :221084096
 //Group kN13
 
-package za.ac.cput.service;
+package za.ac.cput.service.Iservice;
 
 import za.ac.cput.domain.Payment;
 import java.util.List;

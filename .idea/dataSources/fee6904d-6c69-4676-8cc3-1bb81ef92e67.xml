@@ -1008,361 +1008,428 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="292" parent="1" name="eventappdb">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-09-15.07:20:04</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-10-18.15:56:14</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <user id="293" parent="1" name="mysql.infoschema">
+    <schema id="293" parent="1" name="nursing-system">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="294" parent="1" name="crimewatch_db">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <user id="295" parent="1" name="mysql.infoschema">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="294" parent="1" name="mysql.session">
+    <user id="296" parent="1" name="mysql.session">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="295" parent="1" name="mysql.sys">
+    <user id="297" parent="1" name="mysql.sys">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="296" parent="1" name="root">
+    <user id="298" parent="1" name="root">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="297" parent="292" name="admin">
+    <table id="299" parent="292" name="admin">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="298" parent="292" name="booking">
+    <table id="300" parent="292" name="booking">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="299" parent="292" name="customer">
+    <table id="301" parent="292" name="catering">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="300" parent="292" name="event">
+    <table id="302" parent="292" name="customer">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="301" parent="292" name="events">
+    <table id="303" parent="292" name="event">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="302" parent="292" name="payment">
+    <table id="304" parent="292" name="events">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="303" parent="292" name="reservation">
+    <table id="305" parent="292" name="payment">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="304" parent="292" name="venue">
+    <table id="306" parent="292" name="reservation">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="305" parent="297" name="username">
+    <table id="307" parent="292" name="venue">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <column id="308" parent="299" name="username">
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StoredType>varchar(50)|0s</StoredType>
+      <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="306" parent="297" name="fullname">
+    <column id="309" parent="299" name="created_by">
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StoredType>varchar(100)|0s</StoredType>
+      <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="307" parent="297" name="emailaddress">
+    <column id="310" parent="299" name="created_date">
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StoredType>varchar(100)|0s</StoredType>
+      <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="308" parent="297" name="password">
+    <column id="311" parent="299" name="emailaddress">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="309" parent="297" name="status">
-      <DefaultExpression>&apos;ACTIVE&apos;</DefaultExpression>
-      <Position>5</Position>
-      <StoredType>varchar(50)|0s</StoredType>
-    </column>
-    <column id="310" parent="297" name="created_by">
+    <column id="312" parent="299" name="fullname">
       <NotNull>1</NotNull>
-      <Position>6</Position>
-      <StoredType>varchar(50)|0s</StoredType>
+      <Position>5</Position>
+      <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="311" parent="297" name="created_date">
+    <column id="313" parent="299" name="last_login">
+      <Position>6</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <column id="314" parent="299" name="password">
       <NotNull>1</NotNull>
       <Position>7</Position>
-      <StoredType>datetime|0s</StoredType>
+      <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="312" parent="297" name="last_login">
+    <column id="315" parent="299" name="status">
       <Position>8</Position>
-      <StoredType>datetime|0s</StoredType>
+      <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="313" parent="297" name="PRIMARY">
+    <index id="316" parent="299" name="PRIMARY">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="314" parent="297" name="emailaddress">
+    <index id="317" parent="299" name="UKip0k85clceghke7be9kuqptk0">
       <ColNames>emailaddress</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="315" parent="297" name="PRIMARY">
+    <key id="318" parent="299" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="316" parent="297" name="emailaddress">
-      <UnderlyingIndexName>emailaddress</UnderlyingIndexName>
+    <key id="319" parent="299" name="UKip0k85clceghke7be9kuqptk0">
+      <UnderlyingIndexName>UKip0k85clceghke7be9kuqptk0</UnderlyingIndexName>
     </key>
-    <column id="317" parent="298" name="booking_id">
+    <column id="320" parent="300" name="booking_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="318" parent="298" name="booking_date">
+    <column id="321" parent="300" name="booking_date">
       <Position>2</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="319" parent="298" name="status">
+    <column id="322" parent="300" name="status">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="320" parent="298" name="ticketid">
+    <column id="323" parent="300" name="ticketid">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <index id="321" parent="298" name="PRIMARY">
+    <index id="324" parent="300" name="PRIMARY">
       <ColNames>booking_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="322" parent="298" name="PRIMARY">
+    <key id="325" parent="300" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="323" parent="299" name="username">
+    <column id="326" parent="301" name="catering_id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="327" parent="301" name="catering_contact">
+      <Position>2</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="328" parent="301" name="catering_description">
+      <Position>3</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="329" parent="301" name="catering_email">
+      <Position>4</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="330" parent="301" name="catering_image">
+      <Position>5</Position>
+      <StoredType>longblob|0s</StoredType>
+    </column>
+    <column id="331" parent="301" name="catering_name">
+      <Position>6</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="332" parent="301" name="catering_price">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>double|0s</StoredType>
+    </column>
+    <column id="333" parent="301" name="catering_type">
+      <Position>8</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <index id="334" parent="301" name="PRIMARY">
+      <ColNames>catering_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="335" parent="301" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="336" parent="302" name="username">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="324" parent="299" name="fullname">
+    <column id="337" parent="302" name="fullname">
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="325" parent="299" name="emailaddress">
+    <column id="338" parent="302" name="emailaddress">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="326" parent="299" name="password">
+    <column id="339" parent="302" name="password">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="327" parent="299" name="usertype">
+    <column id="340" parent="302" name="usertype">
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="328" parent="299" name="address">
+    <column id="341" parent="302" name="address">
       <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="329" parent="299" name="contactnumber">
+    <column id="342" parent="302" name="contactnumber">
       <Position>7</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="330" parent="299" name="full_name">
+    <column id="343" parent="302" name="full_name">
       <Position>8</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="331" parent="299" name="PRIMARY">
+    <index id="344" parent="302" name="PRIMARY">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="332" parent="299" name="PRIMARY">
+    <key id="345" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="333" parent="300" name="event_id">
+    <column id="346" parent="303" name="event_id">
       <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="334" parent="300" name="category">
+    <column id="347" parent="303" name="category">
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="335" parent="300" name="event_date">
+    <column id="348" parent="303" name="event_date">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="336" parent="300" name="event_description">
+    <column id="349" parent="303" name="event_description">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="337" parent="300" name="event_location">
+    <column id="350" parent="303" name="event_location">
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="338" parent="300" name="event_name">
+    <column id="351" parent="303" name="event_name">
       <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="339" parent="300" name="event_time">
+    <column id="352" parent="303" name="event_time">
       <Position>7</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="340" parent="300" name="status">
+    <column id="353" parent="303" name="status">
       <Position>8</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="341" parent="300" name="PRIMARY">
+    <index id="354" parent="303" name="PRIMARY">
       <ColNames>event_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="342" parent="300" name="PRIMARY">
+    <key id="355" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="343" parent="301" name="event_id">
-      <AutoIncrement>5</AutoIncrement>
+    <column id="356" parent="304" name="event_id">
+      <AutoIncrement>4</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="344" parent="301" name="event_name">
+    <column id="357" parent="304" name="event_name">
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="345" parent="301" name="event_description">
+    <column id="358" parent="304" name="event_description">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="346" parent="301" name="event_location">
+    <column id="359" parent="304" name="event_location">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="347" parent="301" name="event_date">
+    <column id="360" parent="304" name="event_date">
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="348" parent="301" name="event_time">
+    <column id="361" parent="304" name="event_time">
       <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="349" parent="301" name="category">
+    <column id="362" parent="304" name="category">
       <Position>7</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="350" parent="301" name="status">
+    <column id="363" parent="304" name="status">
       <Position>8</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="351" parent="301" name="PRIMARY">
+    <index id="364" parent="304" name="PRIMARY">
       <ColNames>event_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="352" parent="301" name="PRIMARY">
+    <key id="365" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="353" parent="302" name="paymentid">
+    <column id="366" parent="305" name="paymentid">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="354" parent="302" name="amount">
+    <column id="367" parent="305" name="amount">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="355" parent="302" name="payment_date">
+    <column id="368" parent="305" name="payment_date">
       <Position>3</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="356" parent="302" name="payment_method">
+    <column id="369" parent="305" name="payment_method">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="357" parent="302" name="status">
+    <column id="370" parent="305" name="status">
       <Position>5</Position>
       <StoredType>tinyint|0s</StoredType>
     </column>
-    <index id="358" parent="302" name="PRIMARY">
+    <index id="371" parent="305" name="PRIMARY">
       <ColNames>paymentid</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="359" parent="302" name="PRIMARY">
+    <key id="372" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="360" parent="303" name="reservation_id">
+    <column id="373" parent="306" name="reservation_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="361" parent="303" name="reservation_date">
+    <column id="374" parent="306" name="reservation_date">
       <Position>2</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="362" parent="303" name="status">
+    <column id="375" parent="306" name="status">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="363" parent="303" name="ticketid">
+    <column id="376" parent="306" name="ticketid">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <index id="364" parent="303" name="PRIMARY">
+    <index id="377" parent="306" name="PRIMARY">
       <ColNames>reservation_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="365" parent="303" name="PRIMARY">
+    <key id="378" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="366" parent="304" name="venue_id">
+    <column id="379" parent="307" name="venue_id">
+      <AutoIncrement>2</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="367" parent="304" name="venue_address">
+    <column id="380" parent="307" name="venue_address">
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="368" parent="304" name="venue_capacity">
+    <column id="381" parent="307" name="venue_capacity">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="369" parent="304" name="venue_name">
+    <column id="382" parent="307" name="venue_description">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="370" parent="304" name="PRIMARY">
+    <column id="383" parent="307" name="venue_image">
+      <Position>5</Position>
+      <StoredType>longblob|0s</StoredType>
+    </column>
+    <column id="384" parent="307" name="venue_name">
+      <Position>6</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="385" parent="307" name="venue_price">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>double|0s</StoredType>
+    </column>
+    <index id="386" parent="307" name="PRIMARY">
       <ColNames>venue_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="371" parent="304" name="PRIMARY">
+    <key id="387" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

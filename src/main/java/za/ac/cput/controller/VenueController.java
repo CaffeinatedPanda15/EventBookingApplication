@@ -1,17 +1,14 @@
 package za.ac.cput.controller;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import za.ac.cput.domain.eventdomains.EventDTO;
 import za.ac.cput.domain.eventdomains.Venue;
-import za.ac.cput.service.IVenueService;
+import za.ac.cput.service.Iservice.IVenueService;
 
-import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/venue")
@@ -24,13 +21,7 @@ public class VenueController {
     }
 
     @PostMapping("/create")
-    public Venue create (@RequestBody VenueDTO dto) {
-
-        EventDTO created = venueService.createEvent(dto);
-        if (created != null) {
-            return new ResponseEntity<>(created, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    public Venue create (@RequestBody Venue venue) {
         return venueService.create(venue);
     }
 
@@ -40,8 +31,48 @@ public class VenueController {
     }
 
     @PutMapping("/update")
-    public Venue update (@RequestBody Venue venue) {
-        return venueService.update(venue);
+    public ResponseEntity<Venue> update (@RequestBody Map<String, String> payload) {
+        try {
+            Venue venue;
+            byte[] imageBytes = null;
+            if (payload.containsKey("venueImage") && payload.get("venueImage") != null && !payload.get("venueImage").isEmpty()) {
+                imageBytes = Base64.getDecoder().decode(payload.get("venueImage"));
+            }
+
+            if (payload.containsKey("venueId") && !payload.get("venueId").isEmpty()) {
+                int venueId = Integer.parseInt(payload.get("venueId"));
+                Venue existingVenue = venueService.read(venueId);
+                if (existingVenue == null) return ResponseEntity.notFound().build();
+
+                venue = new Venue.Builder()
+                        .copy(existingVenue)
+                        .setVenueName(payload.get("venueName"))
+                        .setVenueDescription(payload.get("venueDescription"))
+                        .setVenueAddress(payload.get("venueAddress"))
+                        .setVenueCapacity(Integer.parseInt(payload.get("venueCapacity")))
+                        .setVenuePrice(Double.parseDouble(payload.get("venuePrice")))
+                        .setVenueImage(imageBytes != null ? imageBytes : existingVenue.getVenueImage())
+                        .build();
+
+                venue = venueService.update(venue);
+            } else {
+
+                venue = new Venue.Builder()
+                        .setVenueName(payload.get("venueName"))
+                        .setVenueDescription(payload.get("venueDescription"))
+                        .setVenueAddress(payload.get("venueAddress"))
+                        .setVenueCapacity(Integer.parseInt(payload.get("venueCapacity")))
+                        .setVenuePrice(Double.parseDouble(payload.get("venuePrice")))
+                        .setVenueImage(imageBytes)
+                        .build();
+
+                venue = venueService.create(venue);
+            }
+
+            return ResponseEntity.ok(venue);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
     }
 
     @DeleteMapping("/delete/{id}")
@@ -52,13 +83,6 @@ public class VenueController {
     @GetMapping("/all")
     public List<Venue> getAll() {
         return venueService.getAll();
-    }
-
-    @PostMapping(value = "/{id}/uploadImage", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Venue uploadImage(@PathVariable int id,
-                             @RequestParam("image") MultipartFile image) throws IOException {
-        byte[] imageBytes = image.getBytes();
-        return venueService.updateVenueImage(id, imageBytes);
     }
 
     @GetMapping("/{id}/image")
