@@ -1,17 +1,13 @@
 package za.ac.cput.controller;
 
-
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import za.ac.cput.domain.eventdomains.Catering;
 import za.ac.cput.domain.eventdomains.CateringDTO;
+import za.ac.cput.domain.eventdomains.Catering;
 import za.ac.cput.service.endusers.CateringService;
 
-import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -24,7 +20,6 @@ public class CateringController {
         this.cateringService = cateringService;
     }
 
-
     @PostMapping
     public ResponseEntity<CateringDTO> createCaterer(@RequestBody CateringDTO dto) {
         CateringDTO created = cateringService.createCater(dto);
@@ -35,7 +30,7 @@ public class CateringController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CateringDTO> getCatering(@PathVariable int id) {
+    public ResponseEntity<CateringDTO> getCatering(@PathVariable long id) {
         CateringDTO cater = cateringService.readCatering(id);
         if (cater != null) {
             return new ResponseEntity<>(cater, HttpStatus.OK);
@@ -44,7 +39,12 @@ public class CateringController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CateringDTO> updateCatering(@PathVariable int id, @RequestBody CateringDTO dto) {
+    public ResponseEntity<CateringDTO> updateCatering(@PathVariable long id, @RequestBody CateringDTO dto) {
+        // Decode image if present
+        if (dto.getCateringImage() != null) {
+            dto.setCateringImage(dto.getCateringImage()); // already a byte[] from GUI Base64 decode
+        }
+
         CateringDTO updated = cateringService.updateCatering(id, dto);
         if (updated != null) {
             return new ResponseEntity<>(updated, HttpStatus.OK);
@@ -52,9 +52,8 @@ public class CateringController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCatering(@PathVariable int id) {
+    public ResponseEntity<Void> deleteCatering(@PathVariable long id) {
         boolean deleted = cateringService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -62,46 +61,10 @@ public class CateringController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-//
-//    @PostMapping("/create")
-//    public Catering create(@RequestBody Catering catering) {
-//        return cateringService.create(catering);
-//    }
-//
-//    @GetMapping("/read/{id}")
-//    public Catering read(@PathVariable int id) {
-//        return cateringService.read(id);
-//    }
-//
-//    @PutMapping("/update")
-//    public Catering update(@RequestBody Catering catering) {
-//        return cateringService.update(catering);
-//    }
-//
-//    @DeleteMapping("/delete/{id}")
-//    public boolean delete(@PathVariable int id) {
-//        return cateringService.delete(id);
-//    }
-//
-//    @GetMapping("/all")
-//    public List<Catering> getAll() {
-//        return cateringService.getAll();
-//    }
-//
-//    @PostMapping(value = "/{id}/uploadImage", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//    public Catering uploadImage(@PathVariable int id,
-//                                @RequestParam("image") MultipartFile image) throws IOException {
-//        return cateringService.updateCateringImage(id, image.getBytes());
-//    }
-
-    @GetMapping("/{id}/image")
-    public ResponseEntity<byte[]> getImage(@PathVariable int id) {
-        CateringDTO catering = cateringService.readCatering(id);
-        if (catering == null || catering.getCateringImage() == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_TYPE, "image/jpeg") // change to "image/png" if needed
-                .body(catering.getCateringImage());
+    @GetMapping("/all")
+    public ResponseEntity<List<Catering>> getAll() {
+        List<Catering> list = cateringService.getAll();
+        if (list != null) return ResponseEntity.ok(list);
+        return ResponseEntity.noContent().build();
     }
-}//end of class
+}

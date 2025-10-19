@@ -9,134 +9,86 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CateringService{
+public class CateringService {
 
-    private final ICateringRepository CateringRepo;
+    private final ICateringRepository cateringRepository;
 
-    public CateringService(ICateringRepository CateringRepo) {
-        this.CateringRepo = CateringRepo;
+    public CateringService(ICateringRepository cateringRepository) {
+        this.cateringRepository = cateringRepository;
     }
 
-    private CateringDTO toDTO(Catering catering) {
+    // Convert entity to DTO
+    private CateringDTO toDTO(Catering c) {
         return new CateringDTO(
-                catering.getCateringId(),
-                catering.getCateringName(),
-                catering.getCateringType(),
-                catering.getCateringDescription(),
-                catering.getCateringPrice(),
-                catering.getCateringContact(),
-                catering.getCateringImage()
+                c.getCateringId(),
+                c.getCateringName(),
+                c.getCateringType(),
+                c.getCateringDescription(),
+                c.getCateringPrice(),
+                c.getCateringContact(),
+                c.getCateringImage()
         );
     }
 
-    // Convert DTO → Entity
+    // Convert DTO to entity (for create)
     private Catering toEntity(CateringDTO dto) {
-        Catering.Builder builder = new Catering.Builder();
-
-        if (dto.getCateringId() != 0) {
-            builder.setCateringId(dto.getCateringId());
-        }
-
-        builder.setCateringName(dto.getCateringName())
+        return new Catering.Builder()
+                .setCateringName(dto.getCateringName())
                 .setCateringType(dto.getCateringType())
                 .setCateringDescription(dto.getCateringDescription())
                 .setCateringPrice(dto.getCateringPrice())
                 .setCateringContact(dto.getCateringContact())
-                .setCateringImage(dto.getCateringImage());
-
-        return builder.build();
+                .setCateringImage(dto.getCateringImage())
+                .build();
     }
 
+    // Create new catering
     public CateringDTO createCater(CateringDTO dto) {
-        Catering catering = toEntity(dto);
-        catering = CateringRepo.save(catering);
-        return toDTO(catering);
+        Catering c = toEntity(dto);
+        c = cateringRepository.save(c);
+        return toDTO(c);
     }
 
-    public CateringDTO readCatering(int id) {
-        Optional<Catering> optionalCatering = CateringRepo.findById(id);
-        if (optionalCatering.isPresent()) {
-            return toDTO(optionalCatering.get());
-        }
-        return null;
+    // Read single catering
+    public CateringDTO readCatering(long id) {
+        Optional<Catering> optional = cateringRepository.findById(id);
+        return optional.map(this::toDTO).orElse(null);
     }
 
-    public CateringDTO updateCatering(int id, CateringDTO dto) {
-        Optional<Catering> optionalCatering = CateringRepo.findById(id);
-        if (optionalCatering.isPresent()) {
-            Catering existing = optionalCatering.get();
+    // Update all fields including image
+    public CateringDTO updateCatering(long id, CateringDTO dto) {
+        Optional<Catering> optional = cateringRepository.findById(id);
+        if (optional.isPresent()) {
+            Catering existing = optional.get();
 
-            // Update only provided fields
-            if (dto.getCateringName() != null)
-                existing = new Catering.Builder().copy(existing)
-                        .setCateringName(dto.getCateringName()).build();
-            if (dto.getCateringType() != null)
-                existing = new Catering.Builder().copy(existing).setCateringType
-                        (dto.getCateringType()).build();
-            if (dto.getCateringDescription() != null)
-                existing = new Catering.Builder().copy(existing)
-                        .setCateringDescription(dto.getCateringDescription()).build();
-            if (dto.getCateringPrice() != 0)
-                existing = new Catering.Builder().copy(existing)
-                        .setCateringPrice(dto.getCateringPrice()).build();
-            if (dto.getCateringContact() != null)
-                existing = new Catering.Builder().copy(existing).
-                        setCateringContact(dto.getCateringContact()).build();
-            if (dto.getCateringImage() != null)
-                existing = new Catering.Builder().copy(existing)
-                        .setCateringImage(dto.getCateringImage()).build();
+            // Update all fields using builder
+            Catering updated = new Catering.Builder()
+                    .copy(existing)
+                    .setCateringName(dto.getCateringName() != null ? dto.getCateringName() : existing.getCateringName())
+                    .setCateringType(dto.getCateringType() != null ? dto.getCateringType() : existing.getCateringType())
+                    .setCateringDescription(dto.getCateringDescription() != null ? dto.getCateringDescription() : existing.getCateringDescription())
+                    .setCateringPrice(dto.getCateringPrice() != 0 ? dto.getCateringPrice() : existing.getCateringPrice())
+                    .setCateringContact(dto.getCateringContact() != null ? dto.getCateringContact() : existing.getCateringContact())
+                    .setCateringImage(dto.getCateringImage() != null ? dto.getCateringImage() : existing.getCateringImage())
+                    .build();
 
-
-            Catering updated = CateringRepo.save(existing);
+            cateringRepository.save(updated);
             return toDTO(updated);
         }
         return null;
     }
 
-
-    //    @Override
-//    public Catering create(Catering catering) {
-//        return cateringRepository.save(catering);
-//    }
-//
-//    @Override
-//    public Catering read(int cateringId) {
-//        Optional<Catering> catering = cateringRepository.findById(cateringId);
-//        return catering.orElse(null);
-//    }
-//
-//    @Override
-//    public Catering update(Catering catering) {
-//        if (cateringRepository.existsById(catering.getCateringId())) {
-//            return cateringRepository.save(catering);
-//        }
-//        return null;
-//    }
-//
-//    @Override
-    public boolean delete(int cateringId) {
-        if (CateringRepo.existsById(cateringId)) {
-            CateringRepo.deleteById(cateringId);
+    // Delete catering
+    public boolean delete(long id) {
+        if (cateringRepository.existsById(id)) {
+            cateringRepository.deleteById(id);
             return true;
         }
         return false;
     }
 
-//    @Override
+    // Get all caterings
     public List<Catering> getAll() {
-        return CateringRepo.findAll();
+        return cateringRepository.findAll();
     }
-
-//    @Override
-    public Catering updateCateringImage(int cateringId, byte[] cateringImage) {
-        Optional<Catering> cateringOptional = CateringRepo.findById(cateringId);
-        if (cateringOptional.isPresent()) {
-            Catering updated = new Catering.Builder()
-                    .copy(cateringOptional.get())
-                    .setCateringImage(cateringImage)
-                    .build();
-            return CateringRepo.save(updated);
-        }
-        return null;
-    }
-}//end of class
+}

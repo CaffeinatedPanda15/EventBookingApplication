@@ -1,23 +1,18 @@
 package za.ac.cput.domain.eventdomains;
 
-import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 
 public class CateringDTO {
-    @Id
-    private int cateringId;
+
+    private long cateringId;
     private String cateringName;
     private String cateringType;
     private String cateringDescription;
     private double cateringPrice;
     private String cateringContact;
-    @Lob
     private byte[] cateringImage;
 
-    public CateringDTO() {
-    }
-
-    public CateringDTO(int cateringId, String cateringName, String cateringType, String cateringDescription,
+    public CateringDTO(long cateringId, String cateringName, String cateringType, String cateringDescription,
                        double cateringPrice, String cateringContact, byte[] cateringImage) {
         this.cateringId = cateringId;
         this.cateringName = cateringName;
@@ -30,7 +25,7 @@ public class CateringDTO {
 
     // Getters and Setters
 
-    public int getCateringId() {
+    public long getCateringId() {
         return cateringId;
     }
 
