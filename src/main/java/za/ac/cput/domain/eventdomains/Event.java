@@ -31,15 +31,6 @@ public class Event {
     private String email;
     @Column
     private String contactNumber;
-
-    @ManyToMany
-    @JoinTable(
-            name = "event_catering",
-            joinColumns = @JoinColumn(name = "event_id"),
-            inverseJoinColumns = @JoinColumn(name = "catering_id")
-    )
-    private List<Catering> caterings;
-
     @Column
     private String eventTime;
 

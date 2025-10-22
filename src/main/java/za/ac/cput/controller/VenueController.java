@@ -22,7 +22,7 @@ public class VenueController {
 
     @PostMapping("/create")
     public Venue create (@RequestBody Venue venue) {
-        return venueService.create(venue);
+        return venueService.createVenue(venue);
     }
 
     @GetMapping("/read/{id}")
@@ -66,7 +66,7 @@ public class VenueController {
                         .setVenueImage(imageBytes)
                         .build();
 
-                venue = venueService.create(venue);
+                venue = venueService.createVenue(venue);
             }
 
             return ResponseEntity.ok(venue);

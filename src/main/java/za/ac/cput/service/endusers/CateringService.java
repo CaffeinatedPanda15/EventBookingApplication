@@ -91,4 +91,20 @@ public class CateringService {
     public List<Catering> getAll() {
         return cateringRepository.findAll();
     }
+
+    public byte[] getCateringImage(Long id) {
+        Optional<Catering> optionalCatering = cateringRepository.findById(id);
+        if (optionalCatering.isPresent()) {
+            Catering catering = optionalCatering.get();
+            if (catering.getCateringImage() != null) {
+                return catering.getCateringImage();
+            }
+        }
+        return null; // gracefully handle no image
+    }
+
+    public Optional<CateringDTO> getCateringById(Long id) {
+        return cateringRepository.findById(id)
+                .map(this::toDTO);
+    }
 }
