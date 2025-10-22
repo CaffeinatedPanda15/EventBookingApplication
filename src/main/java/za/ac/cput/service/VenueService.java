@@ -58,5 +58,13 @@ public class VenueService implements IVenueService {
         return venueRepository.findAll();
     }
 
+    @Override
+    public List<String> getAllVenueNames() {
+        return venueRepository.findAll()
+                .stream()
+                .map(Venue::getVenueName)
+                .toList();
+    }
+
 
 }//end of class

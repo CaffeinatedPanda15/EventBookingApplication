@@ -28,6 +28,7 @@ public class Catering implements Serializable {
     @Column(name = "catering_contact")
     private String cateringContact;
 
+    @Lob
     @Column(name = "catering_image")
     private byte[] cateringImage;
 
