@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dde5dca7-3a3b-4686-94f6-6261b13bbcc2" name="Changes" comment="Troubleshooting the Security problem for Catering and Touch Ups to ensure optimal transitions from all the screens.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/eventdomains/CateringDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/Iservice/IVenueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/Iservice/IVenueService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/VenueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/VenueService.java" afterDir="false" />
@@ -185,7 +184,7 @@
       <workItem from="1760618935557" duration="7571000" />
       <workItem from="1760703830369" duration="6277000" />
       <workItem from="1760786762055" duration="15727000" />
-      <workItem from="1761075107681" duration="9050000" />
+      <workItem from="1761075107681" duration="10931000" />
     </task>
     <task id="LOCAL-00001" summary="customer updates">
       <option name="closed" value="true" />
@@ -291,7 +290,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761098358988</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Troubleshooting the Security problem for Catering and Touch Ups to ensure optimal transitions from all the screens.">
+      <option name="closed" value="true" />
+      <created>1761101078256</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1761101078256</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
