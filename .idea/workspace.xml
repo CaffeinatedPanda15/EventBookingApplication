@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dde5dca7-3a3b-4686-94f6-6261b13bbcc2" name="Changes" comment="Added my changes. Controller, DTO and Service edits for Catering">
-      <change afterPath="$PROJECT_DIR$/openbpm-studio.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/CateringController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/CateringController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/VenueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/VenueController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/eventdomains/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/eventdomains/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/eventdomains/VenueDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/eventdomains/VenueDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/VenueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/VenueService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/endusers/CateringService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/endusers/CateringService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/security/SecurityConfig.java" afterDir="false" />
-    </list>
+    <list default="true" id="dde5dca7-3a3b-4686-94f6-6261b13bbcc2" name="Changes" comment="Troubleshooting the Security problem for Catering and Touch Ups to ensure optimal transitions from all the screens." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -191,7 +179,7 @@
       <workItem from="1760618935557" duration="7571000" />
       <workItem from="1760703830369" duration="6277000" />
       <workItem from="1760786762055" duration="15727000" />
-      <workItem from="1761075107681" duration="6903000" />
+      <workItem from="1761075107681" duration="7366000" />
     </task>
     <task id="LOCAL-00001" summary="customer updates">
       <option name="closed" value="true" />
@@ -281,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760849871488</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Troubleshooting the Security problem for Catering and Touch Ups to ensure optimal transitions from all the screens.">
+      <option name="closed" value="true" />
+      <created>1761097780266</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1761097780266</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,6 +301,7 @@
     <MESSAGE value="venue changes" />
     <MESSAGE value="changes, still functions" />
     <MESSAGE value="Added my changes. Controller, DTO and Service edits for Catering" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added my changes. Controller, DTO and Service edits for Catering" />
+    <MESSAGE value="Troubleshooting the Security problem for Catering and Touch Ups to ensure optimal transitions from all the screens." />
+    <option name="LAST_COMMIT_MESSAGE" value="Troubleshooting the Security problem for Catering and Touch Ups to ensure optimal transitions from all the screens." />
   </component>
 </project>
