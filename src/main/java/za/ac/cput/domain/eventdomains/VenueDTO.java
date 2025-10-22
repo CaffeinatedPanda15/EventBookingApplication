@@ -3,31 +3,30 @@ package za.ac.cput.domain.eventdomains;
 import jakarta.persistence.Lob;
 
 public class VenueDTO {
-    private int venueId;
+    private long venueId;
     private String venueName;
     private String venueDescription;
     private String venueAddress;
     private int venueCapacity;
     private double venuePrice;
-    @Lob
     private byte[] venueImage;
 
     public VenueDTO() {}
 
-    public VenueDTO(int venueId, String venueName, String venueAddress, String venueDescription,
+    public VenueDTO(long venueId, String venueName, String venueAddress, String venueDescription,
                     int venueCapacity,double venuePrice, byte[] venueImage) {
         this.venueId = venueId;
         this.venueName = venueName;
+        this.venueAddress = venueAddress;
         this.venueDescription = venueDescription;
         this.venueCapacity = venueCapacity;
         this.venuePrice = venuePrice;
         this.venueImage = venueImage;
-        this.venueAddress = venueName;
     }
 
 
     // Getters and Setters
-    public int getVenueId() {
+    public long getVenueId() {
         return venueId;
     }
 

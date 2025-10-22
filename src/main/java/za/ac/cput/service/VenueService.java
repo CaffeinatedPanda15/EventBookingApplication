@@ -19,9 +19,15 @@ public class VenueService implements IVenueService {
     }
 
 
+//    @Override
+//    public Venue create(Venue venue) {
+//        return venueRepository.save(venue);
+//    }
+
     @Override
-    public Venue create(Venue venue) {
+    public Venue createVenue(Venue venue) {
         return venueRepository.save(venue);
+
     }
 
     @Override

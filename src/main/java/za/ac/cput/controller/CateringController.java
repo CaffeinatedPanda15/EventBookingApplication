@@ -1,6 +1,7 @@
 package za.ac.cput.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.eventdomains.CateringDTO;
@@ -60,6 +61,19 @@ public class CateringController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/{id}/image")
+    public ResponseEntity<byte[]> getCateringImage(@PathVariable Long id) {
+        byte[] image = cateringService.getCateringImage(id);
+        if (image == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(image);
+    }
+
+
 
     @GetMapping("/all")
     public ResponseEntity<List<Catering>> getAll() {
